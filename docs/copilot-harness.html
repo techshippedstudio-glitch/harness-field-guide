@@ -1,0 +1,209 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="light dark">
+<title>The Copilot Harness · Harness Field Guide</title>
+<meta name="description" content="What you bring and what Microsoft runs in the Microsoft Copilot harness for Foundry Agent Service, drawn as diagrams, with dated preview facts and sources.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500..900&family=IBM+Plex+Mono:wght@400;500&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap">
+<link rel="stylesheet" href="assets/site.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<div class="wrap">
+  <header class="mast">
+    <a class="lockup" href="./">
+      <span class="wordmark">Techshipped<br>Studio</span>
+      <span class="sitename">Harness Field Guide</span>
+      <span class="stamp">ED. 0.1</span>
+    </a>
+    <nav aria-label="Site">
+      <a href="./">Home</a>
+      <a href="foundry-resource-project.html">Foundry resource and project</a>
+      <a href="copilot-harness.html" aria-current="page">Copilot harness</a>
+    </nav>
+  </header>
+
+  <main id="main">
+  <div class="hero col">
+    <div class="eyebrow">Harness engineering · Microsoft Foundry</div>
+    <h1>The Copilot harness, drawn out</h1>
+    <p class="lede">Microsoft's Copilot harness runs the agent loop and the sandbox for you. You bring the instructions, skills, tools and a model. This page shows what sits on each side of that line.</p>
+    <div class="meta"><span>Checked 31 Oct 2026</span><span class="pv">Public preview</span></div>
+  </div>
+
+  <section id="anatomy" aria-labelledby="h-anatomy">
+    <h2 id="h-anatomy">What you bring, what Microsoft runs</h2>
+    <p class="col">The harness is chosen when you create a prompt agent. From then on, Foundry runs the loop that plans each step, calls tools, runs code in a sandbox and hands bounded work to subagents. Your job is the material the loop works with.</p>
+    <figure>
+      <div class="panel">
+        <svg id="dg-harness-anatomy" viewBox="0 0 1000 556" role="img" aria-labelledby="fig1-t fig1-d">
+          <title id="fig1-t">Anatomy of the Microsoft Copilot harness</title>
+          <desc id="fig1-d">Four inputs you provide (instructions, skills, tools, model) feed into the harness, which Microsoft runs: an agent loop of planning, using a tool or running code, and reading the result around the chosen model, plus context management, a sandbox, subagents, and limits and policy. It all runs in Foundry Agent Service inside your Foundry project.</desc>
+          <defs>
+            <marker id="ah1" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" class="m-head"/></marker>
+            <marker id="aha1" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" class="m-head-a"/></marker>
+          </defs>
+
+          <text x="24" y="44" class="t-label">YOU BRING</text>
+          <rect x="24" y="60" width="270" height="78" rx="6" class="s-box"/>
+          <text x="42" y="90" class="t-title">Instructions</text>
+          <text x="42" y="111" class="t-sub">What the agent is for</text>
+          <text x="42" y="127" class="t-sub">and how it should behave</text>
+          <rect x="24" y="152" width="270" height="78" rx="6" class="s-box"/>
+          <text x="42" y="182" class="t-title">Skills</text>
+          <text x="42" y="203" class="t-sub">SKILL.md with name, description,</text>
+          <text x="42" y="219" class="t-sub">procedure, scripts and files</text>
+          <rect x="24" y="244" width="270" height="78" rx="6" class="s-box"/>
+          <text x="42" y="274" class="t-title">Tools</text>
+          <text x="42" y="295" class="t-sub">Foundry tools and MCP servers;</text>
+          <text x="42" y="311" class="t-sub">you set up auth for your MCP tools</text>
+          <rect x="24" y="336" width="270" height="78" rx="6" class="s-box"/>
+          <text x="42" y="366" class="t-title">Model</text>
+          <text x="42" y="387" class="t-sub">A supported Foundry model;</text>
+          <text x="42" y="403" class="t-sub">bring-your-own isn't supported</text>
+          <path d="M296 99 H348" class="s-line" marker-end="url(#ah1)"/>
+          <path d="M296 191 H348" class="s-line" marker-end="url(#ah1)"/>
+          <path d="M296 283 H348" class="s-line" marker-end="url(#ah1)"/>
+          <path d="M296 375 H348" class="s-line" marker-end="url(#ah1)"/>
+
+          <rect x="350" y="24" width="626" height="408" rx="10" class="s-frame"/>
+          <text x="370" y="52" class="t-frame">COPILOT HARNESS · MICROSOFT RUNS THIS</text>
+          <text x="956" y="52" text-anchor="end" class="t-amber">PREVIEW</text>
+
+          <path d="M628.4 161.6 A118 118 0 0 1 662.6 255.3" class="s-loop" marker-end="url(#aha1)"/>
+          <path d="M612.7 341.7 A118 118 0 0 1 477.3 341.7" class="s-loop" marker-end="url(#aha1)"/>
+          <path d="M427.4 255.3 A118 118 0 0 1 461.6 161.6" class="s-loop" marker-end="url(#aha1)"/>
+          <circle cx="545" cy="245" r="54" class="s-core"/>
+          <text x="545" y="243" text-anchor="middle" class="t-core">Model</text>
+          <text x="545" y="262" text-anchor="middle" class="t-core-sub">your choice</text>
+          <rect x="467" y="107" width="156" height="40" rx="20" class="s-pill"/>
+          <text x="545" y="132" text-anchor="middle" class="t-pill">Plan next step</text>
+          <rect x="567" y="284" width="160" height="40" rx="20" class="s-pill"/>
+          <text x="647" y="309" text-anchor="middle" class="t-pill">Use a tool or run code</text>
+          <rect x="365" y="284" width="156" height="40" rx="20" class="s-pill"/>
+          <text x="443" y="309" text-anchor="middle" class="t-pill">Read the result</text>
+          <text x="545" y="408" text-anchor="middle" class="t-label">AGENT LOOP (SIMPLIFIED)</text>
+
+          <path d="M741 70 V394" class="s-tick"/>
+          <rect x="750" y="70" width="212" height="72" rx="6" class="s-box-in"/>
+          <text x="764" y="96" class="t-title">Context</text>
+          <text x="764" y="116" class="t-sub">Keeps working context</text>
+          <text x="764" y="132" class="t-sub">current as the task grows</text>
+          <rect x="750" y="154" width="212" height="72" rx="6" class="s-box-in"/>
+          <text x="764" y="180" class="t-title">Sandbox</text>
+          <text x="764" y="200" class="t-sub">Runs files and code;</text>
+          <text x="764" y="216" class="t-sub">Foundry sizes it for you</text>
+          <rect x="750" y="238" width="212" height="72" rx="6" class="s-box-in"/>
+          <text x="764" y="264" class="t-title">Subagents</text>
+          <text x="764" y="284" class="t-sub">Take bounded tasks; the</text>
+          <text x="764" y="300" class="t-sub">main agent combines results</text>
+          <rect x="750" y="322" width="212" height="72" rx="6" class="s-box-in"/>
+          <text x="764" y="348" class="t-title">Limits and policy</text>
+          <text x="764" y="368" class="t-sub">Work stays within configured</text>
+          <text x="764" y="384" class="t-sub">limits and policy boundaries</text>
+
+          <rect x="24" y="460" width="952" height="72" rx="8" class="s-host"/>
+          <text x="44" y="490" class="t-label">WHERE IT RUNS</text>
+          <text x="44" y="516" class="t-title">Foundry Agent Service, in your Foundry project</text>
+          <text x="956" y="490" text-anchor="end" class="t-sub">project → Foundry resource → Azure subscription</text>
+          <text x="956" y="516" text-anchor="end" class="t-sub">resource region must be one of the preview regions</text>
+        </svg>
+      </div>
+      <figcaption><span class="figno">Fig. 1</span>Our diagram, drawn from Microsoft's announcement and docs. The three loop steps are our simplification: Microsoft says the harness "coordinates model and tool steps toward a requested outcome, within configured limits and policy boundaries."</figcaption>
+    </figure>
+  </section>
+
+  <section id="choose" aria-labelledby="h-choose">
+    <h2 id="h-choose">Which kind of agent do you need?</h2>
+    <p class="col">Foundry offers three levels. Each one gives you more control and more to own. Microsoft's advice is to pick the level that matches what you need, rather than owning infrastructure you don't.</p>
+    <figure>
+      <div class="matrix">
+        <div class="lvl">
+          <div class="label step">Level 1</div>
+          <h3>Prompt agent</h3>
+          <dl>
+            <div><dt>Pick it when</dt><dd>Instructions and the supported tools are enough.</dd></div>
+            <div><dt>You own</dt><dd>Instructions and which tools to attach.</dd></div>
+            <div><dt>Microsoft runs</dt><dd>The agent service.</dd></div>
+          </dl>
+        </div>
+        <div class="lvl on">
+          <div class="label step">Level 2 · our series</div>
+          <h3>Prompt agent + Copilot harness</h3>
+          <dl>
+            <div><dt>Pick it when</dt><dd>You want skills, files, code execution, subagents and multi-tool work.</dd></div>
+            <div><dt>You own</dt><dd>Instructions, skills, tools, model choice.</dd></div>
+            <div><dt>Microsoft runs</dt><dd>The loop, context, sandbox and subagents.</dd></div>
+          </dl>
+        </div>
+        <div class="lvl">
+          <div class="label step">Level 3</div>
+          <h3>Hosted agent</h3>
+          <dl>
+            <div><dt>Pick it when</dt><dd>You need to change the framework, loop, middleware or runtime.</dd></div>
+            <div><dt>You own</dt><dd>Your framework, loop, middleware and dependencies.</dd></div>
+            <div><dt>Microsoft runs</dt><dd>Hosting, and restarts after an interruption for long-running work (your code saves its progress).</dd></div>
+          </dl>
+        </div>
+      </div>
+      <div class="scale" aria-hidden="true"><span>Less to own</span><span>More control</span></div>
+      <div class="scalebar" aria-hidden="true"></div>
+      <figcaption><span class="figno">Fig. 2</span>The "Pick it when" row follows the comparison table in Microsoft's announcement (28 Oct 2026). The "You own" and "Microsoft runs" rows are our summary of the rest of the post.</figcaption>
+    </figure>
+  </section>
+
+  <section id="facts" aria-labelledby="h-facts">
+    <h2 id="h-facts">Preview facts, with dates</h2>
+    <p class="col muted">The harness is in public preview, so these change. Each card says when we last checked it.</p>
+    <div class="cards">
+      <div class="card">
+        <span class="tag pv">Preview limit</span>
+        <h3>Chosen at creation</h3>
+        <p>You pick the harness when you create the agent. Existing agents don't change, and switching an agent to the harness later isn't supported yet.</p>
+        <span class="src">Microsoft Learn and Foundry blog · checked 31 Oct 2026</span>
+      </div>
+      <div class="card">
+        <span class="tag pv">Billing</span>
+        <h3>Runtime free until 1 Dec 2026</h3>
+        <p>From 1 Dec 2026 the sandbox is billed at $0.0994 per vCPU-hour and $0.0118 per GiB-hour. Model calls and separately billed tools are charged at their own rates today. Prices may vary by region and agreement.</p>
+        <span class="src">Foundry blog, 28 Oct 2026 · checked 31 Oct 2026</span>
+      </div>
+      <div class="card">
+        <span class="tag pv">Regions</span>
+        <h3>Nine regions in the preview</h3>
+        <ul class="regions">
+          <li>Australia East</li><li>Canada Central</li><li>Central US</li><li>Germany West Central</li><li>Japan East</li><li>Sweden Central</li><li>UK South</li><li>West Europe</li><li>West US</li>
+        </ul>
+        <span class="src">Microsoft Learn, limits and regions · checked 31 Oct 2026</span>
+      </div>
+      <div class="card">
+        <span class="tag ob">We saw this</span>
+        <h3>A checkbox in "Create an agent"</h3>
+        <p>In the new Foundry portal it's the option "Use the Microsoft Copilot harness", next to the agent name and interaction mode. <span class="obs">No model had to be deployed to reach it.</span></p>
+        <span class="src">Observed in our project, 31 Oct 2026</span>
+      </div>
+    </div>
+  </section>
+
+  <section id="sources" aria-labelledby="h-sources">
+    <h2 id="h-sources">Sources</h2>
+    <ol class="sources">
+      <li><a href="https://devblogs.microsoft.com/foundry/microsoft-copilot-harness-in-foundry/">Introducing the Microsoft Copilot harness in Foundry Agent Service</a> <span class="src">Microsoft Foundry blog · 28 Oct 2026</span></li>
+      <li><a href="https://learn.microsoft.com/azure/foundry/agents/how-to/use-tools-skills-copilot-harness">Use the Microsoft Copilot harness with prompt agents</a> <span class="src">Microsoft Learn · checked 31 Oct 2026</span></li>
+      <li><a href="https://learn.microsoft.com/en-us/azure/foundry/agents/concepts/limits-quotas-regions">Quotas and limits for Microsoft Foundry Agent Service</a> <span class="src">Microsoft Learn · checked 31 Oct 2026</span></li>
+    </ol>
+  </section>
+  </main>
+
+  <footer>
+    <span class="wordmark">Techshipped Studio</span>
+    <span>Explore. Understand. Build.</span>
+    <span>Independent guide; not affiliated with Microsoft.</span>
+  </footer>
+</div>
+</body>
+</html>

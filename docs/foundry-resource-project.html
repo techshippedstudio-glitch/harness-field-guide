@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="light dark">
+<title>Foundry Resource and Project · Harness Field Guide</title>
+<meta name="description" content="What lives on a Microsoft Foundry resource and what lives in a project, why the default project is special, who can do what, and the two cleanup rules.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500..900&family=IBM+Plex+Mono:wght@400;500&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap">
+<link rel="stylesheet" href="assets/site.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<div class="wrap">
+  <header class="mast">
+    <a class="lockup" href="./">
+      <span class="wordmark">Techshipped<br>Studio</span>
+      <span class="sitename">Harness Field Guide</span>
+      <span class="stamp">ED. 0.1</span>
+    </a>
+    <nav aria-label="Site">
+      <a href="./">Home</a>
+      <a href="foundry-resource-project.html" aria-current="page">Foundry resource and project</a>
+      <a href="copilot-harness.html">Copilot harness</a>
+    </nav>
+  </header>
+
+  <main id="main">
+  <div class="hero col">
+    <div class="eyebrow">Microsoft Foundry · Start here</div>
+    <h1>Resource and project in Microsoft Foundry</h1>
+    <p class="lede">Every Foundry setup starts with two things: a Foundry resource, and a project inside it. Here's what lives where, why the first project is special, who can do what, and how cleanup works.</p>
+    <div class="meta"><span>Checked 31 Oct 2026</span><span>New Foundry portal</span></div>
+  </div>
+
+  <section id="layout" aria-labelledby="h-layout">
+    <h2 id="h-layout">What lives where</h2>
+    <p class="col">The resource holds the things every project shares: model deployments, connections to other services, and network and security settings. A project is where you actually build: agents, files, evaluations, datasets and indexes. The first project on a resource is its default project. When we created our resource in the Azure portal, the form asked for a default project name and created both in one deployment.</p>
+    <figure>
+      <div class="panel">
+        <svg id="dg-foundry-resource-project" viewBox="0 0 1000 560" role="img" aria-labelledby="fig1-t fig1-d">
+          <title id="fig1-t">A Foundry resource and its projects</title>
+          <desc id="fig1-d">An Azure subscription contains a resource group, which contains a Foundry resource. The resource holds model deployments, connections, networking and security, and usage metrics, shared by every project. Inside it are the default project, the resource's first project, which alone supports the full OpenAI API, OpenAI Batch and OpenAI fine-tuning, and any projects you add later, which get the Responses, Files and Conversations APIs. Each project holds agents, files, evaluations, datasets and indexes, and has its own access control.</desc>
+
+          <rect x="16" y="16" width="968" height="528" rx="10" class="s-host"/>
+          <text x="36" y="44" class="t-label">AZURE SUBSCRIPTION</text>
+          <rect x="36" y="60" width="928" height="468" rx="8" class="s-group"/>
+          <text x="56" y="86" class="t-label">RESOURCE GROUP</text>
+
+          <rect x="56" y="100" width="888" height="408" rx="8" class="s-frame"/>
+          <text x="78" y="128" class="t-frame">FOUNDRY RESOURCE</text>
+          <text x="924" y="128" text-anchor="end" class="t-label">Microsoft.CognitiveServices/accounts · kind AIServices</text>
+
+          <text x="78" y="162" class="t-label">SHARED BY EVERY PROJECT</text>
+          <rect x="78" y="176" width="200" height="44" rx="22" class="s-pill"/>
+          <text x="178" y="203" text-anchor="middle" class="t-pill">Model deployments</text>
+          <rect x="292" y="176" width="200" height="44" rx="22" class="s-pill"/>
+          <text x="392" y="203" text-anchor="middle" class="t-pill">Connections</text>
+          <rect x="506" y="176" width="200" height="44" rx="22" class="s-pill"/>
+          <text x="606" y="203" text-anchor="middle" class="t-pill">Networking and security</text>
+          <rect x="720" y="176" width="200" height="44" rx="22" class="s-pill"/>
+          <text x="820" y="203" text-anchor="middle" class="t-pill">Usage metrics</text>
+          <text x="500" y="248" text-anchor="middle" class="t-sub">Projects use the resource's deployments and connections</text>
+
+          <rect x="78" y="262" width="410" height="226" rx="6" class="s-proj"/>
+          <text x="98" y="294" class="t-title">Default project</text>
+          <rect x="386" y="277" width="84" height="24" rx="3" class="s-badge"/>
+          <text x="428" y="293" text-anchor="middle" class="t-badge">DEFAULT</text>
+          <text x="98" y="316" class="t-sub">The resource's first project</text>
+          <path d="M98 330 H468" class="s-rule"/>
+          <text x="98" y="352" class="t-label">HOLDS</text>
+          <text x="98" y="374" class="t-body">Agents · files · evaluations · datasets · indexes</text>
+          <text x="98" y="404" class="t-label">ONLY IN THE DEFAULT PROJECT</text>
+          <text x="98" y="426" class="t-body">Full OpenAI API · Batch · OpenAI fine-tuning</text>
+          <path d="M98 446 H468" class="s-rule"/>
+          <text x="98" y="472" class="t-sub">Its own access control (RBAC)</text>
+
+          <rect x="512" y="262" width="410" height="226" rx="6" class="s-proj-dash"/>
+          <text x="532" y="294" class="t-title">Projects you add later</text>
+          <text x="532" y="316" class="t-sub">Optional; for example one per team or app</text>
+          <path d="M532 330 H902" class="s-rule"/>
+          <text x="532" y="352" class="t-label">HOLDS</text>
+          <text x="532" y="374" class="t-body">Agents · files · evaluations · datasets · indexes</text>
+          <text x="532" y="404" class="t-label">OPENAI API</text>
+          <text x="532" y="426" class="t-body">Responses · Files · Conversations</text>
+          <path d="M532 446 H902" class="s-rule"/>
+          <text x="532" y="472" class="t-sub">Its own access control (RBAC)</text>
+        </svg>
+      </div>
+      <figcaption><span class="figno">Fig. 1</span>Our diagram, drawn from Microsoft Learn's Foundry architecture and "Create a project" pages. In our Azure portal run, the default project was created in the same deployment as the resource. If you delete the default project, the next project you create becomes the default.</figcaption>
+    </figure>
+  </section>
+
+  <section id="roles" aria-labelledby="h-roles">
+    <h2 id="h-roles">Who can do what</h2>
+    <p class="col">Managing Azure resources and building inside a project are separate permissions. Being the subscription Owner lets you create the resource, but building agents needs a Foundry role.</p>
+    <div class="tablewrap">
+      <table>
+        <thead><tr><th scope="col">Role</th><th scope="col">Manage resource, projects, deployments</th><th scope="col">Build in a project (agents, evaluations, files)</th></tr></thead>
+        <tbody>
+          <tr><th scope="row">Foundry User</th><td><span class="no">Read only</span></td><td><span class="yes">Yes</span>. The least-privilege role for builders.</td></tr>
+          <tr><th scope="row">Foundry Account Owner</th><td><span class="yes">Yes</span></td><td><span class="no">No</span></td></tr>
+          <tr><th scope="row">Foundry Owner</th><td><span class="yes">Yes</span></td><td><span class="yes">Yes</span>. Microsoft calls it highly privileged.</td></tr>
+          <tr><th scope="row">Azure Owner (subscription)</th><td><span class="yes">Yes</span></td><td><span class="no">No</span>. No data actions, so add a Foundry role.</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="col muted" style="font-size:15px">The Foundry roles were recently renamed from the "Azure AI" names (for example Azure AI User became Foundry User); older pages may still use the old names. Foundry Project Manager is left out because Microsoft's page is inconsistent about what it can create.</p>
+    <div class="cards">
+      <div class="card">
+        <span class="tag">Microsoft's docs</span>
+        <h3>When the role is added for you</h3>
+        <p>Microsoft says that if you create the resource in the Azure portal or Foundry portal and you're allowed to assign roles, you get Foundry User automatically. Creating it with the CLI or an SDK doesn't assign roles.</p>
+        <span class="src">Microsoft Learn, RBAC for Foundry · checked 31 Oct 2026</span>
+      </div>
+      <div class="card">
+        <span class="tag ob">We saw this</span>
+        <h3>Check it anyway</h3>
+        <p>In our subscription the portal said it would grant Foundry User, but Access control showed only our inherited Owner role. Build &gt; Agents said "You don't have permission to build agents in this project" and offered <span class="obs">Assign me the Foundry User role</span>. One click fixed it.</p>
+        <span class="src">Observed in our project, 31 Oct 2026</span>
+      </div>
+    </div>
+  </section>
+
+  <section id="cleanup" aria-labelledby="h-cleanup">
+    <h2 id="h-cleanup">Two cleanup rules</h2>
+    <p class="col">Deleting a project and deleting the resource behave differently. Know which one you're doing.</p>
+    <div class="cards">
+      <div class="card">
+        <span class="tag rule">Rule 1 · Project</span>
+        <h3>A deleted project can't be recovered</h3>
+        <p>Microsoft's page is plain about it: a deleted project is gone, along with the work inside it. There's no recovery window like the resource has.</p>
+        <span class="src">Microsoft Learn, Create a project · checked 31 Oct 2026</span>
+      </div>
+      <div class="card">
+        <span class="tag rule">Rule 2 · Resource</span>
+        <h3>A deleted resource holds its name for 48 hours</h3>
+        <p>Microsoft Learn describes a 48-hour window to recover or purge a deleted resource under "Manage deleted resources". Until it's purged, the name can't be reused. If you deleted the resource group too, you recreate it before recovering. The portal's delete dialog we saw warns the resource "will be permanently deleted", so don't plan on getting it back.</p>
+        <span class="src">Microsoft Learn, Recover or purge deleted resources · observed dialog 31 Oct 2026</span>
+      </div>
+    </div>
+  </section>
+
+  <section id="classic" aria-labelledby="h-classic">
+    <h2 id="h-classic">Following an older tutorial?</h2>
+    <p class="col">Before New Foundry, projects were built on a Foundry hub, now called a hub-based project. Those still exist and appear only in the classic portal, behind the "New Foundry" switch. Microsoft says its new investments are focused on Foundry projects in the new portal, like the ones on this page. If a tutorial's screens don't match yours, check which project type it uses.</p>
+  </section>
+
+  <section id="sources" aria-labelledby="h-sources">
+    <h2 id="h-sources">Sources</h2>
+    <ol class="sources">
+      <li><a href="https://learn.microsoft.com/en-us/azure/foundry/concepts/architecture">Microsoft Foundry architecture</a> <span class="src">Microsoft Learn · checked 31 Oct 2026</span></li>
+      <li><a href="https://learn.microsoft.com/azure/foundry/how-to/create-projects">Create a project for Microsoft Foundry</a> <span class="src">Microsoft Learn · updated 27 Aug 2026</span></li>
+      <li><a href="https://learn.microsoft.com/en-us/azure/foundry/concepts/rbac-foundry">Role-based access control for Microsoft Foundry</a> <span class="src">Microsoft Learn · checked 31 Oct 2026</span></li>
+      <li><a href="https://learn.microsoft.com/en-us/azure/ai-services/recover-purge-resources">Recover or purge deleted Microsoft Foundry resources</a> <span class="src">Microsoft Learn · updated 18 Nov 2025</span></li>
+      <li><a href="https://learn.microsoft.com/azure/foundry/what-is-foundry">What is Microsoft Foundry?</a> <span class="src">Microsoft Learn · checked 31 Oct 2026</span></li>
+      <li><a href="https://learn.microsoft.com/en-gb/azure/foundry/how-to/navigate-from-classic">Migrate from the Foundry (classic) portal</a> <span class="src">Microsoft Learn · checked 31 Oct 2026</span></li>
+    </ol>
+  </section>
+  </main>
+
+  <footer>
+    <span class="wordmark">Techshipped Studio</span>
+    <span>Explore. Understand. Build.</span>
+    <span>Independent guide; not affiliated with Microsoft.</span>
+  </footer>
+</div>
+</body>
+</html>
