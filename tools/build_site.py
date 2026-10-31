@@ -38,7 +38,7 @@ PAGES = [
     ("microsoft/roles-identities.html", "Roles and identities", "Foundry Roles and Identities",
      "Who can manage Foundry, who can build in a project, and how an agent gets access to other services.",
      "microsoft"),
-    ("episodes/ep01.html", "Episode 1", "Episode 1: Foundry from Zero",
+    ("episodes/ep01.html", "Episode 1", "Episode 1: Harness Engineering on Microsoft Foundry: Start Here",
      "Episode 1 tutorial: from harness engineering to a Microsoft Foundry resource and default project, "
      "created and checked in the Azure portal.", "episodes"),
     ("code/index.html", "Code and examples", "Code and Examples",

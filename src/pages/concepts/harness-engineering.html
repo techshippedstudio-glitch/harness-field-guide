@@ -11,7 +11,7 @@
       <div class="panel">
         <svg id="dg-harness-layers" viewBox="0 0 1000 670" role="img" aria-labelledby="hl-t hl-d">
           <title id="hl-t">What we build around a model</title>
-          <desc id="hl-d">A model at the centre, surrounded by the agent loop, surrounded by six harness layers: instructions, context, tools, execution, controls and feedback. Below, three stages: a model answers from what it learned; an agent is the model in a loop that takes actions; an engineered system adds the layers that help control, test and improve its behaviour.</desc>
+          <desc id="hl-d">A model at the centre, surrounded by the agent loop, surrounded by six harness layers: instructions, context, tools, execution, controls and feedback. Below, three stages: a model turns its input into a response; an agent is the model in a loop that takes actions; an engineered system adds the layers that help control, test and improve its behaviour.</desc>
           <defs>
             <marker id="wa-gen" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0 L10,5 L0,10 z" class="m-head-a"/></marker>
           </defs>
@@ -77,8 +77,8 @@
         <tbody>
           <tr><th scope="row">Instructions</th><td>"You're a research assistant. Cite every source. One page, plain English."</td><td class="muted">The agent guesses the audience and the format.</td></tr>
           <tr><th scope="row">Context</th><td>The question, what it has found so far, and a summary once the history gets long.</td><td class="muted">It repeats searches or loses earlier findings.</td></tr>
-          <tr><th scope="row">Tools</th><td>Web search to find sources; a file tool to save the report.</td><td class="muted">It can only answer from what the model already knows.</td></tr>
-          <tr><th scope="row">Execution</th><td>An isolated sandbox where it runs Python to draw the chart and writes the file.</td><td class="muted">It can describe a chart but not make one.</td></tr>
+          <tr><th scope="row">Tools</th><td>Web search to find sources; a file tool to save the report.</td><td class="muted">It can't fetch fresh evidence from the web or save the report.</td></tr>
+          <tr><th scope="row">Execution</th><td>An isolated sandbox where it runs Python to draw the chart and writes the file.</td><td class="muted">It can't run and check the Python that draws the chart.</td></tr>
           <tr><th scope="row">Controls</th><td>Only approved tools, a step limit, and a person's approval before anything is sent.</td><td class="muted">A runaway loop, or an action nobody agreed to.</td></tr>
           <tr><th scope="row">Feedback</th><td>Check that the sources support the conclusions, the chart matches the data and the format is right; keep a trace of each step.</td><td class="muted">Nobody knows whether it worked, or why it failed.</td></tr>
         </tbody>

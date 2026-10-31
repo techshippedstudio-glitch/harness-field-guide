@@ -58,7 +58,7 @@
 
 </style><rect width="1000" height="670" fill="#151B26"/>
           <title id="hl-t">What we build around a model</title>
-          <desc id="hl-d">A model at the centre, surrounded by the agent loop, surrounded by six harness layers: instructions, context, tools, execution, controls and feedback. Below, three stages: a model answers from what it learned; an agent is the model in a loop that takes actions; an engineered system adds the layers that help control, test and improve its behaviour.</desc>
+          <desc id="hl-d">A model at the centre, surrounded by the agent loop, surrounded by six harness layers: instructions, context, tools, execution, controls and feedback. Below, three stages: a model turns its input into a response; an agent is the model in a loop that takes actions; an engineered system adds the layers that help control, test and improve its behaviour.</desc>
           <defs>
             <marker id="wa-gen" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0 L10,5 L0,10 z" class="m-head-a"/></marker>
           </defs>
