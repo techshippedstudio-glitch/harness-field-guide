@@ -58,7 +58,7 @@
 
 </style><rect width="1000" height="670" fill="#151B26"/>
           <title id="hl-t">What we build around a model</title>
-          <desc id="hl-d">A model at the centre, surrounded by the agent loop, surrounded by six harness layers: instructions, context, tools, execution, controls and feedback. Below, three stages: a model answers from what it learned; an agent is the model in a loop that takes actions; an engineered system adds the layers that make the agent reliable.</desc>
+          <desc id="hl-d">A model at the centre, surrounded by the agent loop, surrounded by six harness layers: instructions, context, tools, execution, controls and feedback. Below, three stages: a model answers from what it learned; an agent is the model in a loop that takes actions; an engineered system adds the layers that help control, test and improve its behaviour.</desc>
           <defs>
             <marker id="wa-gen" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0 L10,5 L0,10 z" class="m-head-a"/></marker>
           </defs>
@@ -108,5 +108,5 @@
           <path d="M40 594 H960" class="s-rule"/>
           <g data-stage="1"><text x="40" y="622" class="t-step">1 · MODEL</text><text x="40" y="644" class="t-sub">Turns its input into a response</text></g>
           <g data-stage="2"><text x="340" y="622" class="t-step">2 · AGENT</text><text x="340" y="644" class="t-sub">Picks actions toward a goal, until done</text></g>
-          <g data-stage="3"><text x="640" y="622" class="t-step">3 · ENGINEERED SYSTEM</text><text x="640" y="644" class="t-sub">The layers that make it reliable</text></g>
+          <g data-stage="3"><text x="640" y="622" class="t-step">3 · ENGINEERED SYSTEM</text><text x="640" y="644" class="t-sub">The layers that support reliability</text></g>
         </svg>

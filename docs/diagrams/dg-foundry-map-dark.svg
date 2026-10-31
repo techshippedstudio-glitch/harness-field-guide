@@ -58,7 +58,7 @@
 
 </style><rect width="1000" height="640" fill="#151B26"/>
           <title id="fm-t">Microsoft Foundry capability map</title>
-          <desc id="fm-d">Agents (Foundry Agent Service: prompt agents, the Copilot harness in preview, hosted agents) in the centre, running on Models (a catalog of over 10,000 models, deployments, model router, fine-tuning). Tools and Knowledge feed the agents from the left; Guardrails and Evaluate sit on the right. Operate and govern spans every project along the bottom. Ways in along the top: the Foundry portal, SDKs, the Azure Developer CLI, VS Code, and the Foundry skill and MCP server.</desc>
+          <desc id="fm-d">Agents (Foundry Agent Service: prompt agents, which can optionally use the Copilot harness runtime in preview, and hosted agents) in the centre, running on Models (a catalog of over 10,000 models, deployments, model router, fine-tuning). Tools and Knowledge feed the agents from the left; Guardrails and Evaluate sit on the right. Operate and govern spans every project along the bottom. Ways in along the top: the Foundry portal, SDKs, the Azure Developer CLI, VS Code, and the Foundry skill and MCP server.</desc>
 <defs><marker id="cm-a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" class="m-head"/></marker></defs>
 <g data-stage="8">
 <text x="24" y="47" class="t-label">WAYS IN</text>
@@ -90,19 +90,16 @@
 <rect x="264" y="84" width="472" height="34" class="s-cap-head"/>
 <text x="278" y="107" class="t-cap">Agents · Foundry Agent Service</text>
 <text x="278" y="142" class="t-sub">Build, host and publish agents</text>
-<rect x="278" y="160" width="144" height="120" rx="6" class="s-box"/>
-<text x="290" y="190" class="t-title-sm">Prompt agents</text>
-<text x="290" y="216" class="t-sub">Defined by</text>
-<text x="290" y="234" class="t-sub">configuration</text>
-<rect x="428" y="160" width="144" height="120" rx="6" class="s-box-in"/>
-<text x="440" y="190" class="t-title-sm">Copilot harness</text>
-<text x="440" y="216" class="t-sub">Optional runtime</text>
-<text x="440" y="234" class="t-sub">for prompt agents</text>
-<text x="440" y="264" class="t-amber">PREVIEW</text>
-<rect x="578" y="160" width="144" height="120" rx="6" class="s-box"/>
-<text x="590" y="190" class="t-title-sm">Hosted agents</text>
-<text x="590" y="216" class="t-sub">Your own code</text>
-<text x="590" y="234" class="t-sub">in a container</text>
+<rect x="278" y="160" width="290" height="120" rx="6" class="s-box"/>
+<text x="290" y="188" class="t-title-sm">Prompt agents</text>
+<text x="290" y="210" class="t-sub">Defined by configuration</text>
+<rect x="290" y="222" width="266" height="46" rx="23" class="s-box-in"/>
+<text x="306" y="250" class="t-pill">Copilot harness: optional runtime</text>
+<text x="556" y="188" text-anchor="end" class="t-amber">HARNESS: PREVIEW</text>
+<rect x="580" y="160" width="142" height="120" rx="6" class="s-box"/>
+<text x="592" y="188" class="t-title-sm">Hosted agents</text>
+<text x="592" y="210" class="t-sub">Your own code</text>
+<text x="592" y="228" class="t-sub">in a container</text>
 <path d="M500 318 V302" class="s-line" marker-end="url(#cm-a)"/>
 </g>
 <g data-stage="3">
@@ -167,7 +164,7 @@
 <rect x="24" y="496" width="952" height="84" class="s-cap"/>
 <rect x="24" y="496" width="214" height="84" class="s-cap-head"/>
 <text x="38" y="530" class="t-cap">Operate and govern</text>
-<text x="38" y="554" class="t-core-sub">ACROSS EVERY PROJECT</text>
+<text x="38" y="554" class="t-core-sub">PROJECTS AND RESOURCES</text>
 <rect x="256" y="522" width="191" height="32" rx="16" class="s-chip"/>
 <text x="351" y="543" text-anchor="middle" class="t-chip">Assets across projects</text>
 <rect x="458.6" y="522" width="183" height="32" rx="16" class="s-chip"/>
@@ -177,5 +174,5 @@
 <rect x="732.4" y="522" width="103" height="32" rx="16" class="s-chip"/>
 <text x="784" y="543" text-anchor="middle" class="t-chip">AI Gateway</text>
 </g>
-<text x="500" y="616" text-anchor="middle" class="t-sub">All of it lives in a Foundry resource and its projects (step 4)</text>
+<text x="500" y="616" text-anchor="middle" class="t-sub">Organised through Foundry resources and projects, with connected services (step 4)</text>
         </svg>

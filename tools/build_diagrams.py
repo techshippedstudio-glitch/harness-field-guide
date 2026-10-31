@@ -9,7 +9,9 @@ Every diagram lives once, inline in a page under docs/, as <svg id="dg-...">. It
      tokens, a background, and the brand fonts embedded, so the files look right anywhere,
   3. with --png, renders exports/<id>-<theme>.png at 1920 px wide for the video pipeline, plus
      exports/stages/<id>-<theme>-s<k>.png for diagrams whose groups carry data-stage="k": frame k shows
-     stages 1..k, for staged reveals in the video (exports/ is not published).
+     stages 1..k, for staged reveals in the video, and exports/video/ versions of each framed on a
+     1920x1080 canvas (diagram kept above the bottom 150 px, where YouTube draws captions).
+     exports/ is not published.
 
 Usage:  python3 tools/build_diagrams.py [--png]
 """
@@ -120,6 +122,30 @@ def main() -> None:
                     print(f"  + {len(stages)} stage frames")
                 page.close()
             browser.close()
+        frame_for_video(written, themes)
+        return
+
+
+def frame_for_video(written: list[pathlib.Path], themes: dict) -> None:
+    """Place each PNG (and its stage frames) on a 1920x1080 canvas in the theme's paper colour."""
+    from PIL import Image
+    out_dir = OUT_PNG / "video"
+    out_dir.mkdir(exist_ok=True)
+    box_w, box_h, top = 1760, 880, 50          # bottom 150 px stay clear for captions
+    sources = []
+    for svg_path in written:
+        theme = "dark" if svg_path.stem.endswith("-dark") else "light"
+        sources.append((OUT_PNG / (svg_path.stem + ".png"), theme))
+        sources += [(p, theme) for p in sorted((OUT_PNG / "stages").glob(svg_path.stem + "-s*.png"))]
+    for src, theme in sources:
+        bg = themes[theme]["--paper"]
+        img = Image.open(src).convert("RGB")
+        scale = min(box_w / img.width, box_h / img.height)
+        img = img.resize((round(img.width * scale), round(img.height * scale)), Image.LANCZOS)
+        canvas = Image.new("RGB", (1920, 1080), bg)
+        canvas.paste(img, ((1920 - img.width) // 2, top + (box_h - img.height) // 2))
+        canvas.save(out_dir / src.name)
+    print(f"framed {len(sources)} images for video in {out_dir.relative_to(ROOT)}")
 
 
 if __name__ == "__main__":

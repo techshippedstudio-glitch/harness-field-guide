@@ -11,11 +11,12 @@ from __future__ import annotations
 
 import html
 import pathlib
+import re
 
 ROOT = pathlib.Path(__file__).resolve().parents[1]
 SRC = ROOT / "src" / "pages"
 DOCS = ROOT / "docs"
-EDITION = "0.2"
+EDITION = "0.3"
 
 # path, nav title, page title, description, area
 PAGES = [
@@ -66,6 +67,15 @@ FONTS = ("https://fonts.googleapis.com/css2?family=Archivo:wght@500..900&family=
          "&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap")
 
 
+def figtools(dg_id: str, root: str) -> str:
+    """Links under each diagram: full-size views and download, plus a scroll hint on phones."""
+    light = f"{root}diagrams/{dg_id}-light.svg"
+    dark = f"{root}diagrams/{dg_id}-dark.svg"
+    return (f'\n      <div class="figtools"><span class="scrollhint">Scroll sideways to see the whole diagram →</span>'
+            f'<a href="{light}">Open full diagram</a><a href="{dark}">Dark version</a>'
+            f'<a href="{light}" download>Download SVG</a></div>')
+
+
 def page(path: str, nav_title: str, title: str, desc: str, area: str, body: str) -> str:
     depth = path.count("/")
     root = "../" * depth
@@ -90,6 +100,7 @@ def page(path: str, nav_title: str, title: str, desc: str, area: str, body: str)
         nxt = (f'<a class="next" href="{root}{n}"><span class="label">Next in the learning path · step {step} of '
                f'{len(PATH)}</span><span class="next-title">{html.escape(meta[2])} →</span></a>')
     body = body.replace("{root}", root)
+    body = re.sub(r'(<svg id="(dg-[\w-]+)".*?</svg>\s*</div>)', lambda m: m.group(1) + figtools(m.group(2), root), body, flags=re.S)
     return f"""<!doctype html>
 <html lang="en">
 <head>

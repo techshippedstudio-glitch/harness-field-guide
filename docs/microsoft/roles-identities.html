@@ -18,7 +18,7 @@
     <a class="lockup" href="../">
       <span class="wordmark">Techshipped<br>Studio</span>
       <span class="sitename">Harness Field Guide</span>
-      <span class="stamp">ED. 0.2</span>
+      <span class="stamp">ED. 0.3</span>
     </a>
     <nav aria-label="Site"><a href="../concepts/harness-engineering.html">Concepts</a><a href="../microsoft/copilot-harness.html" aria-current="page">Microsoft</a><a href="../episodes/ep01.html">Episodes</a><a href="../code/index.html">Code</a></nav>
   </header>
@@ -100,6 +100,7 @@
 </g>
         </svg>
       </div>
+      <div class="figtools"><span class="scrollhint">Scroll sideways to see the whole diagram →</span><a href="../diagrams/dg-roles-identities-light.svg">Open full diagram</a><a href="../diagrams/dg-roles-identities-dark.svg">Dark version</a><a href="../diagrams/dg-roles-identities-light.svg" download>Download SVG</a></div>
       <figcaption><span class="figno">Fig. 1</span>Our diagram, simplified from Microsoft Learn's RBAC and agent identity pages. Older agents may share one project-level identity instead of having their own.</figcaption>
     </figure>
   </section>
@@ -143,7 +144,7 @@
       <div class="card">
         <span class="tag">Tools</span>
         <h3>Connections</h3>
-        <p>A tool's authentication is set on its connection, never in the agent's code: no auth, an API key that Foundry stores, the project's or agent's identity, OAuth passthrough, or the user's own Entra token.</p>
+        <p>For tools in a Foundry Toolbox, authentication is set on the tool's connection, not in the agent's code: no auth, an API key that Foundry stores, the project's or agent's identity, OAuth passthrough, or the user's own Entra token.</p>
       </div>
     </div>
   </section>
