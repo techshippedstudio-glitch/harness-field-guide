@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="light dark">
+<title>Harness Engineering · Harness Field Guide</title>
+<meta name="description" content="What we build around a model to make a useful agent: instructions, context, tools, execution, controls and feedback.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500..900&family=IBM+Plex+Mono:wght@400;500&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap">
+<link rel="stylesheet" href="../assets/site.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<div class="wrap">
+  <header class="mast">
+    <a class="lockup" href="../">
+      <span class="wordmark">Techshipped<br>Studio</span>
+      <span class="sitename">Harness Field Guide</span>
+      <span class="stamp">ED. 0.2</span>
+    </a>
+    <nav aria-label="Site"><a href="../concepts/harness-engineering.html" aria-current="page">Concepts</a><a href="../microsoft/copilot-harness.html">Microsoft</a><a href="../episodes/ep01.html">Episodes</a><a href="../code/index.html">Code</a></nav>
+  </header>
+  
+  <main id="main">
+  <div class="hero col">
+    <div class="eyebrow">Concepts · Step 1</div>
+    <h1>Harness engineering: build the agent around the model</h1>
+    <p class="lede">A model on its own predicts text. To get useful work done it needs a loop to act in, and a system around that loop: instructions, context, tools, a place to run code, controls and feedback. That surrounding system is the harness. Designing it is harness engineering.</p>
+  </div>
+
+  <section id="layers" aria-labelledby="h-layers">
+    <h2 id="h-layers">Model, agent, engineered system</h2>
+    <p class="col">Read the diagram from the centre out. The model answers from what it learned. Put it in a loop that can plan, act and look at the result, and you have an agent. Surround that loop with six layers and you have a system you can rely on.</p>
+    <figure>
+      <div class="panel">
+        <svg id="dg-harness-layers" viewBox="0 0 1000 670" role="img" aria-labelledby="hl-t hl-d">
+          <title id="hl-t">What we build around a model</title>
+          <desc id="hl-d">A model at the centre, surrounded by the agent loop, surrounded by six harness layers: instructions, context, tools, execution, controls and feedback. Below, three stages: a model answers from what it learned; an agent is the model in a loop that takes actions; an engineered system adds the layers that make the agent reliable.</desc>
+          <defs>
+            <marker id="wa-gen" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0 L10,5 L0,10 z" class="m-head-a"/></marker>
+          </defs>
+<g data-stage="1">
+<circle cx="300" cy="318" r="68" class="s-core"/>
+<text x="300" y="320" text-anchor="middle" class="t-core">Model</text>
+<text x="300" y="339" text-anchor="middle" class="t-core-sub">predicts text</text>
+</g>
+<g data-stage="2">
+<circle cx="300" cy="318" r="100.0" class="s-ring" stroke-width="44"/>
+<path d="M353.0 233.2 A100 100 0 0 1 399.9 314.5" class="s-loop-arrow" marker-end="url(#wa-gen)"/>
+<path d="M346.9 406.3 A100 100 0 0 1 253.1 406.3" class="s-loop-arrow" marker-end="url(#wa-gen)"/>
+<path d="M200.1 314.5 A100 100 0 0 1 247.0 233.2" class="s-loop-arrow" marker-end="url(#wa-gen)"/>
+<text x="300.0" y="222.0" text-anchor="middle" class="t-ring">AGENT LOOP</text>
+</g>
+<g data-stage="3">
+<path d="M305.2 68.1 A250 250 0 0 1 513.8 188.5 L412.9 249.6 A132 132 0 0 0 302.8 186.0 Z" class="s-seg"/>
+<text x="395.5" y="158.6" text-anchor="middle" class="t-seg">Instructions</text>
+</g>
+<g data-stage="4">
+<path d="M519.1 197.6 A250 250 0 0 1 519.1 438.4 L415.7 381.6 A132 132 0 0 0 415.7 254.4 Z" class="s-seg"/>
+<text x="491.0" y="324.0" text-anchor="middle" class="t-seg">Context</text>
+</g>
+<g data-stage="5">
+<path d="M513.8 447.5 A250 250 0 0 1 305.2 567.9 L302.8 450.0 A132 132 0 0 0 412.9 386.4 Z" class="s-seg"/>
+<text x="395.5" y="489.4" text-anchor="middle" class="t-seg">Tools</text>
+</g>
+<g data-stage="6">
+<path d="M294.8 567.9 A250 250 0 0 1 86.2 447.5 L187.1 386.4 A132 132 0 0 0 297.2 450.0 Z" class="s-seg"/>
+<text x="204.5" y="489.4" text-anchor="middle" class="t-seg">Execution</text>
+</g>
+<g data-stage="7">
+<path d="M80.9 438.4 A250 250 0 0 1 80.9 197.6 L184.3 254.4 A132 132 0 0 0 184.3 381.6 Z" class="s-seg"/>
+<text x="109.0" y="324.0" text-anchor="middle" class="t-seg">Controls</text>
+</g>
+<g data-stage="8">
+<path d="M86.2 188.5 A250 250 0 0 1 294.8 68.1 L297.2 186.0 A132 132 0 0 0 187.1 249.6 Z" class="s-seg"/>
+<text x="204.5" y="158.6" text-anchor="middle" class="t-seg">Feedback</text>
+</g>
+          <text x="600" y="92" class="t-label">THE HARNESS · SIX LAYERS</text>
+<g data-stage="3"><rect x="600" y="118" width="16" height="16" rx="2" class="s-seg"/><text x="628" y="132" class="t-title">Instructions</text><text x="628" y="154" class="t-sub">Role, goal and rules the agent follows</text></g>
+<g data-stage="4"><rect x="600" y="192" width="16" height="16" rx="2" class="s-seg"/><text x="628" y="206" class="t-title">Context</text><text x="628" y="228" class="t-sub">What the model sees: task, knowledge, memory</text></g>
+<g data-stage="5"><rect x="600" y="266" width="16" height="16" rx="2" class="s-seg"/><text x="628" y="280" class="t-title">Tools</text><text x="628" y="302" class="t-sub">Ways to act: search, APIs, MCP servers</text></g>
+<g data-stage="6"><rect x="600" y="340" width="16" height="16" rx="2" class="s-seg"/><text x="628" y="354" class="t-title">Execution</text><text x="628" y="376" class="t-sub">A safe place to run code and work with files</text></g>
+<g data-stage="7"><rect x="600" y="414" width="16" height="16" rx="2" class="s-seg"/><text x="628" y="428" class="t-title">Controls</text><text x="628" y="450" class="t-sub">Permissions, approvals, limits and guardrails</text></g>
+<g data-stage="8"><rect x="600" y="488" width="16" height="16" rx="2" class="s-seg"/><text x="628" y="502" class="t-title">Feedback</text><text x="628" y="524" class="t-sub">Evaluations, tests and traces that show what worked</text></g>
+          <path d="M40 594 H960" class="s-rule"/>
+          <g data-stage="1"><text x="40" y="622" class="t-step">1 · MODEL</text><text x="40" y="644" class="t-sub">Answers from what it learned</text></g>
+          <g data-stage="2"><text x="340" y="622" class="t-step">2 · AGENT</text><text x="340" y="644" class="t-sub">The model in a loop, taking actions</text></g>
+          <g data-stage="3"><text x="640" y="622" class="t-step">3 · ENGINEERED SYSTEM</text><text x="640" y="644" class="t-sub">The layers that make it reliable</text></g>
+        </svg>
+      </div>
+      <figcaption><span class="figno">Fig. 1</span>Our diagram. The six layers are our grouping of practices described by OpenAI, Thoughtworks and Anthropic (sources below); other writers draw the lines differently.</figcaption>
+    </figure>
+  </section>
+
+  <section id="task" aria-labelledby="h-task">
+    <h2 id="h-task">One task, six layers</h2>
+    <p class="col">Take one request: <b>"Research a question on the web and give me a one-page report with a chart."</b> Here is what each layer does for it, and what goes wrong without it.</p>
+    <div class="tablewrap">
+      <table>
+        <thead><tr><th scope="col">Layer</th><th scope="col">For this task</th><th scope="col">Without it</th></tr></thead>
+        <tbody>
+          <tr><th scope="row">Instructions</th><td>"You're a research assistant. Cite every source. One page, plain English."</td><td class="muted">The agent guesses the audience and the format.</td></tr>
+          <tr><th scope="row">Context</th><td>The question, what it has found so far, and a summary once the history gets long.</td><td class="muted">It repeats searches or loses earlier findings.</td></tr>
+          <tr><th scope="row">Tools</th><td>Web search to find sources; a file tool to save the report.</td><td class="muted">It can only answer from what the model already knows.</td></tr>
+          <tr><th scope="row">Execution</th><td>A sandbox where it runs Python to draw the chart and writes the file.</td><td class="muted">It can describe a chart but not make one.</td></tr>
+          <tr><th scope="row">Controls</th><td>Only approved tools, a step limit, and a person's approval before anything is sent.</td><td class="muted">A runaway loop, or an action nobody agreed to.</td></tr>
+          <tr><th scope="row">Feedback</th><td>Check that every citation opens, score the report, keep a trace of each step.</td><td class="muted">Nobody knows whether it worked, or why it failed.</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section id="origin" aria-labelledby="h-origin">
+    <h2 id="h-origin">Where the term comes from</h2>
+    <div class="col" style="display:grid;gap:14px">
+      <p>OpenAI used "harness engineering" in February 2026 for its team's work building the environment, tools and feedback loops that let Codex agents ship a product. Its summary of the split: "Humans steer. Agents execute."</p>
+      <p>Thoughtworks' Birgitta Böckeler describes a harness as the tooling and practices that keep agents in check. In a later article she splits it into guides, which steer the agent before it acts, and sensors, which help it correct itself afterwards.</p>
+      <p>Anthropic describes the harness as the loop that calls the model and routes its tool calls, kept separate from the sandbox where code runs and from the log of the session.</p>
+      <p>The common thread: the model is one part. Most of the engineering is in what surrounds it.</p>
+    </div>
+  </section>
+
+  <section id="sources" aria-labelledby="h-sources">
+    <h2 id="h-sources">Sources</h2>
+    <ol class="sources">
+      <li><a href="https://openai.com/index/harness-engineering">Harness engineering: leveraging Codex in an agent-first world</a> <span class="src">Ryan Lopopolo, OpenAI · 11 Feb 2026</span></li>
+      <li><a href="https://www.martinfowler.com/articles/exploring-gen-ai/harness-engineering-memo.html">Harness Engineering - first thoughts</a> <span class="src">Birgitta Böckeler, martinfowler.com · 17 Feb 2026</span></li>
+      <li><a href="https://martinfowler.com/articles/harness-engineering.html">Harness engineering for coding agent users</a> <span class="src">Birgitta Böckeler, martinfowler.com · 2 Apr 2026</span></li>
+      <li><a href="https://anthropic.com/engineering/managed-agents">Scaling Managed Agents: decoupling the brain from the hands</a> <span class="src">Anthropic Engineering · 8 Apr 2026</span></li>
+    </ol>
+  </section>
+
+  <a class="next" href="../microsoft/copilot-harness.html"><span class="label">Next in the learning path · step 2 of 6</span><span class="next-title">The Microsoft Copilot Harness →</span></a>
+  </main>
+  <footer>
+    <span class="wordmark">Techshipped Studio</span>
+    <span>Explore. Understand. Build.</span>
+    <span>Independent guide; not affiliated with Microsoft.</span>
+  </footer>
+</div>
+</body>
+</html>

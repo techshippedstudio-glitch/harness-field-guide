@@ -7,8 +7,9 @@ Every diagram lives once, inline in a page under docs/, as <svg id="dg-...">. It
   1. finds every <svg id="dg-..."> in docs/*.html,
   2. writes docs/diagrams/<id>-light.svg and <id>-dark.svg: colours resolved from the site's light and dark
      tokens, a background, and the brand fonts embedded, so the files look right anywhere,
-  3. with --png, renders exports/<id>-<theme>.png at 1920 px wide for the video pipeline
-     (exports/ is not published).
+  3. with --png, renders exports/<id>-<theme>.png at 1920 px wide for the video pipeline, plus
+     exports/stages/<id>-<theme>-s<k>.png for diagrams whose groups carry data-stage="k": frame k shows
+     stages 1..k, for staged reveals in the video (exports/ is not published).
 
 Usage:  python3 tools/build_diagrams.py [--png]
 """
@@ -72,7 +73,7 @@ def main() -> None:
 
     OUT_SVG.mkdir(exist_ok=True)
     written: list[pathlib.Path] = []
-    for page in sorted(DOCS.glob("*.html")):
+    for page in sorted(DOCS.glob("**/*.html")):
         html = page.read_text(encoding="utf-8")
         for m in re.finditer(r'<svg id="(dg-[\w-]+)"(.*?)</svg>', html, re.S):
             dg_id, inner = m.group(1), m.group(2)
@@ -97,17 +98,27 @@ def main() -> None:
         OUT_PNG.mkdir(exist_ok=True)
         with sync_playwright() as p:
             browser = p.chromium.launch()
+            stage_dir = OUT_PNG / "stages"
+            stage_dir.mkdir(exist_ok=True)
             for svg_path in written:
-                vb = re.search(r'viewBox="0 0 (\d+) (\d+)"', svg_path.read_text(encoding="utf-8"))
+                text = svg_path.read_text(encoding="utf-8")
+                vb = re.search(r'viewBox="0 0 (\d+) (\d+)"', text)
                 w, h = (int(x) for x in vb.groups())
-                scale = 1920 / w
-                page = browser.new_page(viewport={"width": w, "height": h}, device_scale_factor=scale)
+                page = browser.new_page(viewport={"width": w, "height": h}, device_scale_factor=1920 / w)
                 page.goto(svg_path.as_uri())
                 page.wait_for_timeout(300)
                 png = OUT_PNG / (svg_path.stem + ".png")
                 page.screenshot(path=str(png))
-                page.close()
                 print(f"wrote {png.relative_to(ROOT)}")
+                stages = sorted({int(n) for n in re.findall(r'data-stage="(\d+)"', text)})
+                for k in stages:
+                    page.evaluate(
+                        "k => document.querySelectorAll('[data-stage]').forEach("
+                        "g => g.style.visibility = (+g.dataset.stage <= k) ? 'visible' : 'hidden')", k)
+                    page.screenshot(path=str(stage_dir / f"{svg_path.stem}-s{k}.png"))
+                if stages:
+                    print(f"  + {len(stages)} stage frames")
+                page.close()
             browser.close()
 
 

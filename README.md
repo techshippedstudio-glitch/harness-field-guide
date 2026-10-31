@@ -1,28 +1,39 @@
 # Harness Field Guide
 
-Diagrams and dated notes for building AI agents on Microsoft Foundry, from the Techshipped Studio video
-series. Each page goes with an episode and can be read on its own.
+The complete learning collection for the Techshipped Studio series on harness engineering and Microsoft
+Foundry: concepts, diagrams, episode tutorials and code. The site is its readable front door; the videos
+explain and demonstrate the same material.
 
-Live site: GitHub Pages, served from `docs/`.
+Live site: https://techshippedstudio-glitch.github.io/harness-field-guide/ (GitHub Pages, from `docs/`).
 
 ## What's here
 
 | Path | What it is |
 |---|---|
-| `docs/index.html` | Home page |
-| `docs/foundry-resource-project.html` | Episode 1: resource and project in Microsoft Foundry |
-| `docs/copilot-harness.html` | Episode 2: the Copilot harness, drawn out |
+| `src/pages/` | The content of every site page (edit these) |
+| `docs/` | The built site, served by GitHub Pages (generated; don't edit by hand) |
 | `docs/assets/site.css` | All styles, including the diagram classes |
 | `docs/diagrams/` | Each diagram as a standalone SVG, light and dark (generated) |
-| `tools/build_diagrams.py` | Regenerates `docs/diagrams/`; `--png` also renders 1920 px PNGs into `exports/` |
+| `episodes/` | Material for each episode: outline, diagrams used, resources created |
+| `code/` | Runnable samples, one folder per episode |
+| `tools/build_site.py` | Builds `docs/` from `src/pages/` (shared header, navigation, footer) |
+| `tools/build_diagrams.py` | Exports diagrams; `--png` also renders 1920 px PNGs and staged frames into `exports/` |
 | `tools/fonts/` | Brand fonts (SIL Open Font License) embedded in the exported diagrams |
+
+## Site areas
+
+- **Concepts**: harness engineering and the ideas behind it
+- **Microsoft**: the Copilot harness, Foundry's capabilities, resources and projects, roles and identities
+- **Episodes**: a tutorial for each video
+- **Code**: samples for each episode
 
 ## Editing a diagram
 
-Diagrams are inline SVG in the pages, styled by the "svg drawing classes" in `site.css`. Edit the page,
-then run:
+Diagrams are inline SVG in the pages under `src/pages/`, styled by the "svg drawing classes" in `site.css`.
+Groups marked `data-stage="n"` are revealed one by one in the videos. After an edit, run:
 
 ```
+python3 tools/build_site.py
 python3 tools/build_diagrams.py --png
 ```
 

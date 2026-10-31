@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="light dark">
+<title>Foundry Roles and Identities · Harness Field Guide</title>
+<meta name="description" content="Who can manage Foundry, who can build in a project, and how an agent gets access to other services.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500..900&family=IBM+Plex+Mono:wght@400;500&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap">
+<link rel="stylesheet" href="../assets/site.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<div class="wrap">
+  <header class="mast">
+    <a class="lockup" href="../">
+      <span class="wordmark">Techshipped<br>Studio</span>
+      <span class="sitename">Harness Field Guide</span>
+      <span class="stamp">ED. 0.2</span>
+    </a>
+    <nav aria-label="Site"><a href="../concepts/harness-engineering.html">Concepts</a><a href="../microsoft/copilot-harness.html" aria-current="page">Microsoft</a><a href="../episodes/ep01.html">Episodes</a><a href="../code/index.html">Code</a></nav>
+  </header>
+  <nav class="subnav" aria-label="In this area"><a href="../microsoft/copilot-harness.html">Copilot harness</a><a href="../microsoft/foundry.html">Microsoft Foundry</a><a href="../microsoft/resources-projects.html">Resources and projects</a><a href="../microsoft/roles-identities.html" aria-current="page">Roles and identities</a></nav>
+  <main id="main">
+  <div class="hero col">
+    <div class="eyebrow">Microsoft implementation · Step 5</div>
+    <h1>Roles and identities</h1>
+    <p class="lede">Three questions decide who can do what in Foundry: who manages the infrastructure, who builds in a project, and how an agent gets access to the services it uses.</p>
+    <div class="meta"><span>Checked 31 Oct 2026</span></div>
+  </div>
+
+  <section id="people" aria-labelledby="h-people">
+    <h2 id="h-people">Who manages, who builds, how the agent gets access</h2>
+    <p class="col">Managing the Foundry resource and building inside a project are separate permissions. The agent is a third party in the picture: it has its own identity, and it can reach only what that identity has been allowed to reach.</p>
+    <figure>
+      <div class="panel">
+        <svg id="dg-roles-identities" viewBox="0 0 1000 520" role="img" aria-labelledby="ri-tt ri-dd">
+          <title id="ri-tt">People, permissions and agent identity in Microsoft Foundry</title>
+          <desc id="ri-dd">An administrator with the Foundry Account Owner role manages the Foundry resource: projects, model deployments and quota, but has no build access on its own. A builder with the Foundry User role builds and tests agents, evaluations and files in a project but can't create projects. Each agent in the project has its own agent identity, which starts with no permissions; it reaches Azure services through roles you grant, and MCP servers and APIs through a connection that uses a key, a managed identity or OAuth.</desc>
+<defs><marker id="ri-a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" class="m-head"/></marker><marker id="ri-t" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" class="m-head-a"/></marker></defs>
+<g data-stage="1">
+<rect x="340" y="60" width="320" height="440" rx="8" class="s-frame"/>
+<text x="360" y="88" class="t-frame">FOUNDRY RESOURCE</text>
+<text x="360" y="116" class="t-sub">Projects, model deployments,</text>
+<text x="360" y="134" class="t-sub">quota and network settings</text>
+<rect x="362" y="190" width="276" height="290" rx="6" class="s-proj"/>
+<text x="380" y="216" class="t-label">PROJECT</text>
+<text x="380" y="238" class="t-sub">Agents, files, evaluations</text>
+</g>
+<g data-stage="2">
+<rect x="24" y="70" width="240" height="150" rx="6" class="s-person"/>
+<text x="42" y="100" class="t-title">Administrator</text>
+<text x="42" y="122" class="t-own">FOUNDRY ACCOUNT OWNER</text>
+<text x="42" y="148" class="t-sub">Creates the resource, projects</text>
+<text x="42" y="166" class="t-sub">and model deployments</text>
+<text x="42" y="196" class="t-amber">NO BUILD ACCESS ON ITS OWN</text>
+<path d="M266 120 H338" class="s-line" marker-end="url(#ri-a)"/>
+<text x="302" y="110" text-anchor="middle" class="t-label">MANAGES</text>
+</g>
+<g data-stage="3">
+<rect x="24" y="260" width="240" height="150" rx="6" class="s-person"/>
+<text x="42" y="290" class="t-title">Builder</text>
+<text x="42" y="312" class="t-own">FOUNDRY USER</text>
+<text x="42" y="338" class="t-sub">Builds and tests agents,</text>
+<text x="42" y="356" class="t-sub">evaluations and files</text>
+<text x="42" y="386" class="t-label">CAN'T CREATE PROJECTS</text>
+<path d="M266 335 H360" class="s-line" marker-end="url(#ri-a)"/>
+<text x="304" y="325" text-anchor="middle" class="t-label">BUILDS</text>
+<text x="24" y="448" class="t-sub">Foundry Owner can do both.</text>
+<text x="24" y="468" class="t-sub">Azure Owner alone can't build.</text>
+</g>
+<g data-stage="4">
+<rect x="380" y="270" width="240" height="190" rx="6" class="s-box-in"/>
+<text x="398" y="300" class="t-title">Agent</text>
+<rect x="398" y="318" width="204" height="44" rx="22" class="s-identity"/>
+<text x="500" y="345" text-anchor="middle" class="t-pill">Agent identity</text>
+<text x="398" y="392" class="t-sub">Its own Microsoft Entra</text>
+<text x="398" y="410" class="t-sub">identity. Starts with no</text>
+<text x="398" y="428" class="t-sub">permissions until you</text>
+<text x="398" y="446" class="t-sub">grant them.</text>
+</g>
+<g data-stage="5">
+<text x="716" y="88" class="t-label">WHAT THE AGENT USES</text>
+<rect x="716" y="104" width="260" height="52" rx="6" class="s-box"/>
+<text x="734" y="136" class="t-title">Azure AI Search</text>
+<rect x="716" y="170" width="260" height="52" rx="6" class="s-box"/>
+<text x="734" y="202" class="t-title">Storage</text>
+<rect x="716" y="236" width="260" height="52" rx="6" class="s-box"/>
+<text x="734" y="268" class="t-title">Other Azure services</text>
+<path d="M700 104 V302" class="s-tick"/>
+<path d="M604 340 C660 340 660 203 698 203" class="s-loop" marker-end="url(#ri-t)"/>
+<text x="716" y="330" class="t-step">REACHED WITH AZURE ROLES YOU GRANT</text>
+<rect x="716" y="372" width="260" height="88" rx="6" class="s-box"/>
+<text x="734" y="402" class="t-title">MCP servers and APIs</text>
+<text x="734" y="424" class="t-sub">Through a connection: key,</text>
+<text x="734" y="442" class="t-sub">managed identity or OAuth</text>
+<path d="M620 416 H714" class="s-loop" marker-end="url(#ri-t)"/>
+</g>
+        </svg>
+      </div>
+      <figcaption><span class="figno">Fig. 1</span>Our diagram, simplified from Microsoft Learn's RBAC and agent identity pages. Older agents may share one project-level identity instead of having their own.</figcaption>
+    </figure>
+  </section>
+
+  <section id="roles" aria-labelledby="h-roles">
+    <h2 id="h-roles">The built-in roles</h2>
+    <div class="tablewrap">
+      <table>
+        <thead><tr><th scope="col">Role</th><th scope="col">Manage resource and projects</th><th scope="col">Build in a project</th><th scope="col">In short</th></tr></thead>
+        <tbody>
+          <tr><th scope="row">Foundry User</th><td><span class="no">Read only</span></td><td><span class="yes">Yes</span></td><td>The least-privilege role for building and testing.</td></tr>
+          <tr><th scope="row">Foundry Project Manager</th><td><span class="yes">Projects</span></td><td><span class="yes">Yes</span></td><td>Builds, manages projects, publishes agents; can grant only Foundry User.</td></tr>
+          <tr><th scope="row">Foundry Account Owner</th><td><span class="yes">Yes</span></td><td><span class="no">No</span></td><td>Creates the resource, projects and deployments.</td></tr>
+          <tr><th scope="row">Foundry Owner</th><td><span class="yes">Yes</span></td><td><span class="yes">Yes</span></td><td>Both; Microsoft calls it highly privileged.</td></tr>
+          <tr><th scope="row">Foundry Agent Consumer</th><td><span class="no">No</span></td><td><span class="no">No</span></td><td>Can only call published agents.</td></tr>
+          <tr><th scope="row">Azure Owner, Contributor</th><td><span class="yes">Yes</span></td><td><span class="no">No</span></td><td>No Foundry data actions, so add a Foundry role to build.</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="col muted" style="font-size:15px">The Foundry roles were recently renamed from the "Azure AI" names (Azure AI User became Foundry User, for example); older pages may still use the old names. When you create a resource in the Azure portal or Foundry portal, or a project in the Foundry portal, and you're allowed to assign roles, Microsoft says you're given Foundry User automatically. Creating them with the CLI or an SDK doesn't. If building is blocked, see the <a href="../episodes/ep01.html#h-trouble">Episode 1 troubleshooting</a>.</p>
+  </section>
+
+  <section id="identities" aria-labelledby="h-identities">
+    <h2 id="h-identities">The identities Foundry uses</h2>
+    <div class="cards">
+      <div class="card">
+        <span class="tag">Resource</span>
+        <h3>Resource managed identity</h3>
+        <p>An identity for the Foundry resource itself, used when the resource needs to reach other Azure services, such as reading from a storage account.</p>
+      </div>
+      <div class="card">
+        <span class="tag">Project</span>
+        <h3>Project managed identity</h3>
+        <p>Each project has one. It's used to reach backing storage, search and other resources, and by tool connections set to use it. Creating the project in the Foundry portal gives it Foundry User when the creator can assign roles.</p>
+      </div>
+      <div class="card">
+        <span class="tag ob">Agent</span>
+        <h3>Agent identity</h3>
+        <p>Each new agent gets its own Microsoft Entra identity, with Foundry holding the credential so there's no secret to manage. It starts with no permissions; you grant it roles on the resources it should use.</p>
+      </div>
+      <div class="card">
+        <span class="tag">Tools</span>
+        <h3>Connections</h3>
+        <p>A tool's authentication is set on its connection, never in the agent's code: no auth, an API key that Foundry stores, the project's or agent's identity, OAuth passthrough, or the user's own Entra token.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="sources" aria-labelledby="h-sources">
+    <h2 id="h-sources">Sources</h2>
+    <ol class="sources">
+      <li><a href="https://learn.microsoft.com/azure/foundry/concepts/rbac-foundry">Role-based access control for Microsoft Foundry</a> <span class="src">Microsoft Learn · updated 16 Sep 2026</span></li>
+      <li><a href="https://learn.microsoft.com/azure/foundry/agents/concepts/agent-identity">Agent identity concepts in Microsoft Foundry</a> <span class="src">Microsoft Learn · updated 28 Oct 2026</span></li>
+      <li><a href="https://learn.microsoft.com/azure/foundry/agents/how-to/tools/tool-authentication">Toolbox authentication in Microsoft Foundry</a> <span class="src">Microsoft Learn · updated 23 Oct 2026</span></li>
+      <li><a href="https://learn.microsoft.com/azure/foundry/agents/concepts/hosted-agent-permissions">Hosted agent permissions reference</a> <span class="src">Microsoft Learn · updated 29 Jun 2026</span></li>
+      <li><a href="https://learn.microsoft.com/azure/foundry/concepts/authentication-authorization-foundry">Authentication and authorization in Microsoft Foundry</a> <span class="src">Microsoft Learn · updated 5 Aug 2026</span></li>
+    </ol>
+  </section>
+
+  <a class="next" href="../episodes/ep01.html"><span class="label">Next in the learning path · step 6 of 6</span><span class="next-title">Episode 1: Foundry from Zero →</span></a>
+  </main>
+  <footer>
+    <span class="wordmark">Techshipped Studio</span>
+    <span>Explore. Understand. Build.</span>
+    <span>Independent guide; not affiliated with Microsoft.</span>
+  </footer>
+</div>
+</body>
+</html>

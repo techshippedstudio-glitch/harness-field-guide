@@ -1,0 +1,213 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="light dark">
+<title>Microsoft Foundry Capabilities · Harness Field Guide</title>
+<meta name="description" content="Where models, agents, tools, knowledge, evaluation and operations fit together in Microsoft Foundry.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500..900&family=IBM+Plex+Mono:wght@400;500&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap">
+<link rel="stylesheet" href="../assets/site.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<div class="wrap">
+  <header class="mast">
+    <a class="lockup" href="../">
+      <span class="wordmark">Techshipped<br>Studio</span>
+      <span class="sitename">Harness Field Guide</span>
+      <span class="stamp">ED. 0.2</span>
+    </a>
+    <nav aria-label="Site"><a href="../concepts/harness-engineering.html">Concepts</a><a href="../microsoft/copilot-harness.html" aria-current="page">Microsoft</a><a href="../episodes/ep01.html">Episodes</a><a href="../code/index.html">Code</a></nav>
+  </header>
+  <nav class="subnav" aria-label="In this area"><a href="../microsoft/copilot-harness.html">Copilot harness</a><a href="../microsoft/foundry.html" aria-current="page">Microsoft Foundry</a><a href="../microsoft/resources-projects.html">Resources and projects</a><a href="../microsoft/roles-identities.html">Roles and identities</a></nav>
+  <main id="main">
+  <div class="hero col">
+    <div class="eyebrow">Microsoft implementation · Step 3</div>
+    <h1>Microsoft Foundry: where the pieces fit</h1>
+    <p class="lede">Microsoft Foundry is Microsoft's platform for building AI agents, models and apps. It brings models, agents, tools and the controls to run them under one management grouping, so the harness from step 2 has everything it needs around it.</p>
+    <div class="meta"><span>Checked 31 Oct 2026</span><span>New Foundry portal</span></div>
+  </div>
+
+  <section id="map" aria-labelledby="h-map">
+    <h2 id="h-map">The capability map</h2>
+    <p class="col">Agents sit in the middle. They run on models, act through tools and draw on knowledge. Guardrails check what goes in and out, evaluation shows how well it works, and the operate layer looks after everything across projects.</p>
+    <figure>
+      <div class="panel">
+        <svg id="dg-foundry-map" viewBox="0 0 1000 640" role="img" aria-labelledby="fm-t fm-d">
+          <title id="fm-t">Microsoft Foundry capability map</title>
+          <desc id="fm-d">Agents (Foundry Agent Service: prompt agents, the Copilot harness in preview, hosted agents) in the centre, running on Models (a catalog of over 10,000 models, deployments, model router, fine-tuning). Tools and Knowledge feed the agents from the left; Guardrails and Evaluate sit on the right. Operate and govern spans every project along the bottom. Ways in along the top: the Foundry portal, SDKs, the Azure Developer CLI, VS Code, and the Foundry skill and MCP server.</desc>
+<defs><marker id="cm-a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" class="m-head"/></marker></defs>
+<g data-stage="8">
+<text x="24" y="47" class="t-label">WAYS IN</text>
+<rect x="110" y="24" width="127" height="32" rx="16" class="s-chip"/>
+<text x="173" y="45" text-anchor="middle" class="t-chip">Foundry portal</text>
+<rect x="246.8" y="24" width="55" height="32" rx="16" class="s-chip"/>
+<text x="274" y="45" text-anchor="middle" class="t-chip">SDKs</text>
+<rect x="311.6" y="24" width="163" height="32" rx="16" class="s-chip"/>
+<text x="393" y="45" text-anchor="middle" class="t-chip">Azure Developer CLI</text>
+<rect x="484.40000000000003" y="24" width="76" height="32" rx="16" class="s-chip"/>
+<text x="523" y="45" text-anchor="middle" class="t-chip">VS Code</text>
+<rect x="570.8000000000001" y="24" width="228" height="32" rx="16" class="s-chip"/>
+<text x="685" y="45" text-anchor="middle" class="t-chip">Foundry skill and MCP server</text>
+</g>
+<g data-stage="1">
+<rect x="264" y="320" width="472" height="156" class="s-cap"/>
+<rect x="264" y="320" width="472" height="34" class="s-cap-head"/>
+<text x="278" y="343" class="t-cap">Models</text>
+<text x="278" y="378" class="t-sub">Pick and run a model</text>
+<rect x="278" y="397" width="6" height="6" class="s-badge"/>
+<text x="292" y="406" class="t-chip">Catalog of 10,000+ models, sold by Azure or by partners</text>
+<rect x="278" y="420" width="6" height="6" class="s-badge"/>
+<text x="292" y="429" class="t-chip">Deployments: Standard, Provisioned, Batch</text>
+<rect x="278" y="443" width="6" height="6" class="s-badge"/>
+<text x="292" y="452" class="t-chip">Model router · fine-tuning</text>
+</g>
+<g data-stage="2">
+<rect x="264" y="84" width="472" height="216" class="s-cap"/>
+<rect x="264" y="84" width="472" height="34" class="s-cap-head"/>
+<text x="278" y="107" class="t-cap">Agents · Foundry Agent Service</text>
+<text x="278" y="142" class="t-sub">Build, host and publish agents</text>
+<rect x="278" y="160" width="144" height="120" rx="6" class="s-box"/>
+<text x="290" y="190" class="t-title-sm">Prompt agents</text>
+<text x="290" y="216" class="t-sub">Defined by</text>
+<text x="290" y="234" class="t-sub">configuration</text>
+<rect x="428" y="160" width="144" height="120" rx="6" class="s-box-in"/>
+<text x="440" y="190" class="t-title-sm">Copilot harness</text>
+<text x="440" y="216" class="t-sub">Microsoft runs</text>
+<text x="440" y="234" class="t-sub">the loop · PREVIEW</text>
+<rect x="578" y="160" width="144" height="120" rx="6" class="s-box"/>
+<text x="590" y="190" class="t-title-sm">Hosted agents</text>
+<text x="590" y="216" class="t-sub">Your own code</text>
+<text x="590" y="234" class="t-sub">in a container</text>
+<path d="M500 318 V302" class="s-line" marker-end="url(#cm-a)"/>
+</g>
+<g data-stage="3">
+<rect x="24" y="84" width="220" height="186" class="s-cap"/>
+<rect x="24" y="84" width="220" height="34" class="s-cap-head"/>
+<text x="38" y="107" class="t-cap">Tools</text>
+<text x="38" y="142" class="t-sub">Let agents take actions</text>
+<rect x="38" y="161" width="6" height="6" class="s-badge"/>
+<text x="52" y="170" class="t-chip">Web search · code interpreter</text>
+<rect x="38" y="184" width="6" height="6" class="s-badge"/>
+<text x="52" y="193" class="t-chip">File search · AI Search</text>
+<rect x="38" y="207" width="6" height="6" class="s-badge"/>
+<text x="52" y="216" class="t-chip">MCP servers · OpenAPI</text>
+<rect x="38" y="230" width="6" height="6" class="s-badge"/>
+<text x="52" y="239" class="t-chip">Toolbox: one MCP endpoint</text>
+<path d="M246 177 H262" class="s-line" marker-end="url(#cm-a)"/>
+</g>
+<g data-stage="4">
+<rect x="24" y="290" width="220" height="186" class="s-cap"/>
+<rect x="24" y="290" width="220" height="34" class="s-cap-head"/>
+<text x="38" y="313" class="t-cap">Knowledge</text>
+<text x="38" y="348" class="t-sub">Ground agents in your data</text>
+<rect x="38" y="367" width="6" height="6" class="s-badge"/>
+<text x="52" y="376" class="t-chip">Foundry IQ knowledge bases</text>
+<rect x="38" y="390" width="6" height="6" class="s-badge"/>
+<text x="52" y="399" class="t-chip">Agentic retrieval</text>
+<rect x="38" y="413" width="6" height="6" class="s-badge"/>
+<text x="52" y="422" class="t-chip">Memory (preview)</text>
+<path d="M246 383 C256 383 254 250 262 250" class="s-line" marker-end="url(#cm-a)"/>
+</g>
+<g data-stage="5">
+<rect x="756" y="84" width="220" height="186" class="s-cap"/>
+<rect x="756" y="84" width="220" height="34" class="s-cap-head"/>
+<text x="770" y="107" class="t-cap">Guardrails</text>
+<text x="770" y="142" class="t-sub">Block unsafe input and output</text>
+<rect x="770" y="161" width="6" height="6" class="s-badge"/>
+<text x="784" y="170" class="t-chip">Harmful content</text>
+<rect x="770" y="184" width="6" height="6" class="s-badge"/>
+<text x="784" y="193" class="t-chip">Prompt attacks</text>
+<rect x="770" y="207" width="6" height="6" class="s-badge"/>
+<text x="784" y="216" class="t-chip">Protected material</text>
+<rect x="770" y="230" width="6" height="6" class="s-badge"/>
+<text x="784" y="239" class="t-chip">PII, tool checks (preview)</text>
+<path d="M754 177 H738" class="s-line" marker-end="url(#cm-a)"/>
+</g>
+<g data-stage="6">
+<rect x="756" y="290" width="220" height="186" class="s-cap"/>
+<rect x="756" y="290" width="220" height="34" class="s-cap-head"/>
+<text x="770" y="313" class="t-cap">Evaluate</text>
+<text x="770" y="348" class="t-sub">Measure quality, see each step</text>
+<rect x="770" y="367" width="6" height="6" class="s-badge"/>
+<text x="784" y="376" class="t-chip">Built-in and custom evaluators</text>
+<rect x="770" y="390" width="6" height="6" class="s-badge"/>
+<text x="784" y="399" class="t-chip">Tracing (OpenTelemetry)</text>
+<rect x="770" y="413" width="6" height="6" class="s-badge"/>
+<text x="784" y="422" class="t-chip">Monitoring dashboards</text>
+<rect x="770" y="436" width="6" height="6" class="s-badge"/>
+<text x="784" y="445" class="t-chip">AI red teaming agent</text>
+<path d="M738 250 C746 250 744 383 754 383" class="s-line" marker-end="url(#cm-a)"/>
+</g>
+<g data-stage="7">
+<rect x="24" y="496" width="952" height="84" class="s-cap"/>
+<rect x="24" y="496" width="214" height="84" class="s-cap-head"/>
+<text x="38" y="530" class="t-cap">Operate and govern</text>
+<text x="38" y="554" class="t-core-sub">ACROSS EVERY PROJECT</text>
+<rect x="256" y="522" width="191" height="32" rx="16" class="s-chip"/>
+<text x="351" y="543" text-anchor="middle" class="t-chip">Assets across projects</text>
+<rect x="458.6" y="522" width="183" height="32" rx="16" class="s-chip"/>
+<text x="550" y="543" text-anchor="middle" class="t-chip">Compliance and policy</text>
+<rect x="653.9" y="522" width="66" height="32" rx="16" class="s-chip"/>
+<text x="687" y="543" text-anchor="middle" class="t-chip">Quota</text>
+<rect x="732.4" y="522" width="103" height="32" rx="16" class="s-chip"/>
+<text x="784" y="543" text-anchor="middle" class="t-chip">AI Gateway</text>
+</g>
+<text x="500" y="616" text-anchor="middle" class="t-sub">All of it lives in a Foundry resource and its projects (step 4)</text>
+        </svg>
+      </div>
+      <figcaption><span class="figno">Fig. 1</span>Our grouping of the capabilities Microsoft documents, matched to the new Foundry portal. Features in preview are marked. Workflows are left out because Microsoft is retiring them on 1 Dec 2026 in favour of Microsoft Agent Framework.</figcaption>
+    </figure>
+  </section>
+
+  <section id="portal" aria-labelledby="h-portal">
+    <h2 id="h-portal">Where to find it in the portal</h2>
+    <div class="tablewrap">
+      <table>
+        <thead><tr><th scope="col">Portal section</th><th scope="col">What you do there</th></tr></thead>
+        <tbody>
+          <tr><th scope="row">Discover</th><td>The model catalog and model benchmarks.</td></tr>
+          <tr><th scope="row">Build</th><td>Agents, models, playgrounds, evaluations and fine-tuning in your project.</td></tr>
+          <tr><th scope="row">Operate</th><td>Compliance, fleet health, tracing and assets across all your projects.</td></tr>
+          <tr><th scope="row">Manage</th><td>Quota, AI Gateway, and resource and project details, including who has access.</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section id="models" aria-labelledby="h-models">
+    <h2 id="h-models">Two kinds of model in the catalog</h2>
+    <p class="col">Models <b>sold by Azure</b> are hosted and supported by Microsoft. Models <b>from partners and the community</b> are supported by their providers, and they make up most of the catalog. Usually you deploy a model to your Foundry resource first, and every project on that resource can share the deployment. An instant-access preview, in one region so far, lets you call some models by name without a deployment.</p>
+  </section>
+
+  <section id="sources" aria-labelledby="h-sources">
+    <h2 id="h-sources">Sources</h2>
+    <ol class="sources">
+      <li><a href="https://learn.microsoft.com/azure/foundry/what-is-foundry">What is Microsoft Foundry?</a> <span class="src">Microsoft Learn · updated 24 Sep 2026</span></li>
+      <li><a href="https://learn.microsoft.com/azure/foundry/concepts/foundry-models-overview">Microsoft Foundry Models overview</a> <span class="src">Microsoft Learn · updated 28 Jul 2026</span></li>
+      <li><a href="https://learn.microsoft.com/azure/foundry/agents/overview">What is Microsoft Foundry Agent Service?</a> <span class="src">Microsoft Learn · updated 11 Oct 2026</span></li>
+      <li><a href="https://learn.microsoft.com/azure/foundry/agents/concepts/tool-catalog">What is Toolbox in Microsoft Foundry?</a> <span class="src">Microsoft Learn · updated 31 Jul 2026</span></li>
+      <li><a href="https://learn.microsoft.com/azure/foundry/agents/concepts/what-is-foundry-iq">What is Foundry IQ?</a> <span class="src">Microsoft Learn · updated 1 Aug 2026</span></li>
+      <li><a href="https://learn.microsoft.com/azure/foundry/agents/concepts/what-is-memory">Memory in Microsoft Foundry Agent Service (preview)</a> <span class="src">Microsoft Learn · updated 2 Jun 2026</span></li>
+      <li><a href="https://learn.microsoft.com/azure/foundry/guardrails/guardrails-overview">Guardrails and controls overview in Microsoft Foundry</a> <span class="src">Microsoft Learn · checked 31 Oct 2026</span></li>
+      <li><a href="https://learn.microsoft.com/en-gb/azure/foundry/how-to/navigate-from-classic">Migrate from the Foundry (classic) portal</a> <span class="src">Microsoft Learn · checked 31 Oct 2026</span></li>
+      <li><a href="https://learn.microsoft.com/en-us/azure/foundry/concepts/instant-models">Instant access to Foundry Models (preview)</a> <span class="src">Microsoft Learn · checked 31 Oct 2026</span></li>
+      <li><a href="https://learn.microsoft.com/azure/foundry/concepts/observability">Observability in Generative AI</a> <span class="src">Microsoft Learn · updated 17 Oct 2026</span></li>
+      <li><a href="https://learn.microsoft.com/azure/foundry/control-plane/overview">What is Microsoft Foundry Control Plane?</a> <span class="src">Microsoft Learn · updated 13 Aug 2026</span></li>
+      <li><a href="https://learn.microsoft.com/azure/foundry/agents/concepts/workflow">Build a workflow in Microsoft Foundry (Preview)</a> <span class="src">Microsoft Learn · updated 31 Jul 2026</span></li>
+    </ol>
+  </section>
+
+  <a class="next" href="../microsoft/resources-projects.html"><span class="label">Next in the learning path · step 4 of 6</span><span class="next-title">Foundry Resources and Projects →</span></a>
+  </main>
+  <footer>
+    <span class="wordmark">Techshipped Studio</span>
+    <span>Explore. Understand. Build.</span>
+    <span>Independent guide; not affiliated with Microsoft.</span>
+  </footer>
+</div>
+</body>
+</html>

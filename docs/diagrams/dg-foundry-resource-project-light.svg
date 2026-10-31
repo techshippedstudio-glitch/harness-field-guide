@@ -21,6 +21,7 @@
 .t-label { font-family: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace; font-size: 12.5px; letter-spacing: .08em; fill: #4B5466; }
 .t-frame { font-family: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace; font-size: 12.5px; letter-spacing: .08em; fill: #0F5E57; font-weight: 500; }
 .t-title { font-family: "Archivo", "Arial Narrow", "Segoe UI", system-ui, sans-serif; font-weight: 750; font-size: 17px; fill: #0B0F17; }
+.t-title-sm { font-family: "Archivo", "Arial Narrow", "Segoe UI", system-ui, sans-serif; font-weight: 750; font-size: 15px; fill: #0B0F17; }
 .t-sub { font-family: "Source Serif 4", Georgia, "Times New Roman", serif; font-size: 13.5px; fill: #4B5466; }
 .t-body { font-family: "Source Serif 4", Georgia, "Times New Roman", serif; font-size: 14.5px; fill: #0B0F17; }
 .t-pill { font-family: "Archivo", "Arial Narrow", "Segoe UI", system-ui, sans-serif; font-weight: 650; font-size: 13.5px; fill: #0B0F17; }
@@ -30,17 +31,41 @@
 .t-amber { font-family: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace; font-size: 11.5px; letter-spacing: .08em; fill: #8A4B00; }
 .m-head { fill: #4B5466; }
 .m-head-a { fill: #0F5E57; }
+/* wheel diagrams (harness layers) */
+.s-ring { fill: none; stroke: #BFEDE6; }
+.s-ring-ms { fill: none; stroke: #2DD4BF; }
+.s-loop-arrow { fill: none; stroke: #0F5E57; stroke-width: 2; }
+.s-seg { fill: rgba(45, 212, 191, .16); stroke: #0F5E57; stroke-width: 1.6; }
+.s-seg-you { fill: #FFFFFF; stroke: #0B0F17; stroke-width: 2; }
+.s-seg-ms { fill: #2DD4BF; stroke: #0F5E57; stroke-width: 1.6; }
+.s-seg-shared { fill: rgba(45, 212, 191, .16); stroke: #0F5E57; stroke-width: 1.6; }
+.s-hatch { stroke: #0F5E57; stroke-width: 1.4; opacity: .35; }
+.t-ring { font-family: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace; font-size: 11px; letter-spacing: .1em; fill: #0F5E57; font-weight: 500; }
+.t-ring-on { font-family: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace; font-size: 11px; letter-spacing: .1em; fill: #0B0F17; font-weight: 500; }
+.t-seg { font-family: "Archivo", "Arial Narrow", "Segoe UI", system-ui, sans-serif; font-weight: 750; font-size: 16px; fill: #0B0F17; }
+.t-seg-on { font-family: "Archivo", "Arial Narrow", "Segoe UI", system-ui, sans-serif; font-weight: 750; font-size: 16px; fill: #0B0F17; }
+.t-own { font-family: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace; font-size: 10.5px; letter-spacing: .08em; fill: #0F5E57; font-weight: 500; }
+.t-step { font-family: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace; font-size: 11px; letter-spacing: .08em; fill: #0F5E57; font-weight: 500; }
+/* capability map */
+.s-cap { fill: #FFFFFF; stroke: #0B0F17; stroke-width: 1.8; }
+.s-cap-head { fill: #2DD4BF; }
+.s-chip { fill: #F3F5F7; stroke: #C9CED8; stroke-width: 1; }
+.t-cap { font-family: "Archivo", "Arial Narrow", "Segoe UI", system-ui, sans-serif; font-weight: 800; font-size: 16px; fill: #0B0F17; }
+.t-chip { font-family: "Source Serif 4", Georgia, "Times New Roman", serif; font-size: 13px; fill: #0B0F17; }
+/* people and identity */
+.s-person { fill: #FFFFFF; stroke: #0B0F17; stroke-width: 1.8; }
+.s-identity { fill: rgba(45, 212, 191, .16); stroke: #0F5E57; stroke-width: 1.6; stroke-dasharray: 6 4; }
 
 </style><rect width="1000" height="560" fill="#FFFFFF"/>
           <title id="fig1-t">A Foundry resource and its projects</title>
           <desc id="fig1-d">An Azure subscription contains a resource group, which contains a Foundry resource. The resource holds model deployments, connections, networking and security, and usage metrics, shared by every project. Inside it are the default project, the resource's first project, which alone supports the full OpenAI API, OpenAI Batch and OpenAI fine-tuning, and any projects you add later, which get the Responses, Files and Conversations APIs. Each project holds agents, files, evaluations, datasets and indexes, and has its own access control.</desc>
 
-          <rect x="16" y="16" width="968" height="528" rx="10" class="s-host"/>
-          <text x="36" y="44" class="t-label">AZURE SUBSCRIPTION</text>
-          <rect x="36" y="60" width="928" height="468" rx="8" class="s-group"/>
-          <text x="56" y="86" class="t-label">RESOURCE GROUP</text>
+          <g data-stage="1"><rect x="16" y="16" width="968" height="528" rx="10" class="s-host"/>
+          <text x="36" y="44" class="t-label">AZURE SUBSCRIPTION</text></g>
+          <g data-stage="2"><rect x="36" y="60" width="928" height="468" rx="8" class="s-group"/>
+          <text x="56" y="86" class="t-label">RESOURCE GROUP</text></g>
 
-          <rect x="56" y="100" width="888" height="408" rx="8" class="s-frame"/>
+          <g data-stage="3"><rect x="56" y="100" width="888" height="408" rx="8" class="s-frame"/>
           <text x="78" y="128" class="t-frame">FOUNDRY RESOURCE</text>
           <text x="924" y="128" text-anchor="end" class="t-label">Microsoft.CognitiveServices/accounts · kind AIServices</text>
 
@@ -53,9 +78,9 @@
           <text x="606" y="203" text-anchor="middle" class="t-pill">Networking and security</text>
           <rect x="720" y="176" width="200" height="44" rx="22" class="s-pill"/>
           <text x="820" y="203" text-anchor="middle" class="t-pill">Usage metrics</text>
-          <text x="500" y="248" text-anchor="middle" class="t-sub">Projects use the resource's deployments and connections</text>
+          <text x="500" y="248" text-anchor="middle" class="t-sub">Projects use the resource's deployments and connections</text></g>
 
-          <rect x="78" y="262" width="410" height="226" rx="6" class="s-proj"/>
+          <g data-stage="4"><rect x="78" y="262" width="410" height="226" rx="6" class="s-proj"/>
           <text x="98" y="294" class="t-title">Default project</text>
           <rect x="386" y="277" width="84" height="24" rx="3" class="s-badge"/>
           <text x="428" y="293" text-anchor="middle" class="t-badge">DEFAULT</text>
@@ -66,9 +91,9 @@
           <text x="98" y="404" class="t-label">ONLY IN THE DEFAULT PROJECT</text>
           <text x="98" y="426" class="t-body">Full OpenAI API · Batch · OpenAI fine-tuning</text>
           <path d="M98 446 H468" class="s-rule"/>
-          <text x="98" y="472" class="t-sub">Its own access control (RBAC)</text>
+          <text x="98" y="472" class="t-sub">Its own access control (RBAC)</text></g>
 
-          <rect x="512" y="262" width="410" height="226" rx="6" class="s-proj-dash"/>
+          <g data-stage="5"><rect x="512" y="262" width="410" height="226" rx="6" class="s-proj-dash"/>
           <text x="532" y="294" class="t-title">Projects you add later</text>
           <text x="532" y="316" class="t-sub">Optional; for example one per team or app</text>
           <path d="M532 330 H902" class="s-rule"/>
@@ -77,5 +102,5 @@
           <text x="532" y="404" class="t-label">OPENAI API</text>
           <text x="532" y="426" class="t-body">Responses · Files · Conversations</text>
           <path d="M532 446 H902" class="s-rule"/>
-          <text x="532" y="472" class="t-sub">Its own access control (RBAC)</text>
+          <text x="532" y="472" class="t-sub">Its own access control (RBAC)</text></g>
         </svg>

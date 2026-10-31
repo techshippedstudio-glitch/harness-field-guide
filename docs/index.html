@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="color-scheme" content="light dark">
 <title>Harness Field Guide</title>
-<meta name="description" content="Diagrams and dated notes for building AI agents with Microsoft Foundry and the Copilot harness, from the Techshipped Studio video series.">
+<meta name="description" content="Learn harness engineering and Microsoft Foundry step by step: concepts, Microsoft&#x27;s implementation, episode tutorials and code, with diagrams.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500..900&family=IBM+Plex+Mono:wght@400;500&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap">
@@ -18,65 +18,52 @@
     <a class="lockup" href="./">
       <span class="wordmark">Techshipped<br>Studio</span>
       <span class="sitename">Harness Field Guide</span>
-      <span class="stamp">ED. 0.1</span>
+      <span class="stamp">ED. 0.2</span>
     </a>
-    <nav aria-label="Site">
-      <a href="./" aria-current="page">Home</a>
-      <a href="foundry-resource-project.html">Foundry resource and project</a>
-      <a href="copilot-harness.html">Copilot harness</a>
-    </nav>
+    <nav aria-label="Site"><a href="concepts/harness-engineering.html">Concepts</a><a href="microsoft/copilot-harness.html">Microsoft</a><a href="episodes/ep01.html">Episodes</a><a href="code/index.html">Code</a></nav>
   </header>
-
+  
   <main id="main">
   <div class="hero col">
-    <div class="eyebrow">Companion to the Techshipped Studio videos</div>
-    <h1>Build the agent around the model</h1>
-    <p class="lede">Diagrams and dated notes for building AI agents on Microsoft Foundry. Each page goes with an episode, and you can read it without watching the video.</p>
-    <div class="meta"><span>Edition 0.1</span><span>Updated 31 Oct 2026</span></div>
+    <div class="eyebrow">Techshipped Studio · learning collection</div>
+    <h1>Learn harness engineering, then build it on Microsoft Foundry</h1>
+    <p class="lede">Concepts, diagrams, tutorials and code in one place. The videos explain and demonstrate the same material and point back here for the full diagrams and steps.</p>
+    <div class="meta"><span>Edition 0.2</span><span>Updated 31 Oct 2026</span></div>
   </div>
 
-  <section aria-labelledby="h-foundry">
-    <div class="label">Playlist · Microsoft Foundry: Build Real AI Agents</div>
-    <h2 id="h-foundry">Microsoft Foundry</h2>
-    <div class="cards">
-      <a class="guide" href="foundry-resource-project.html">
-        <span class="label">Episode 1</span>
-        <h3>Resource and project in Microsoft Foundry</h3>
-        <p>What lives on the resource, what lives in a project, why the default project is special, who can build, and the two cleanup rules.</p>
-        <span class="src">Checked 31 Oct 2026</span>
-      </a>
-      <a class="guide" href="copilot-harness.html">
-        <span class="label">Episode 2 · coming next</span>
-        <h3>The Copilot harness, drawn out</h3>
-        <p>What you bring and what Microsoft runs, the three kinds of Foundry agent, and the preview facts with dates.</p>
-        <span class="src">Checked 31 Oct 2026 · Public preview</span>
-      </a>
+  <section aria-labelledby="h-path">
+    <h2 id="h-path">The learning path</h2>
+    <p class="col">Six steps, each answering one question. Read them in order the first time.</p>
+    <ol class="journey">
+      <li><span class="n">1</span><div><h3><a href="concepts/harness-engineering.html">Harness engineering</a></h3><p>What must we build around a model to make a useful agent?</p></div><span class="vis">Model → agent → engineered system</span></li>
+      <li><span class="n">2</span><div><h3><a href="microsoft/copilot-harness.html">Microsoft Copilot harness</a></h3><p>Which parts does Microsoft's managed harness run, and what do we supply?</p></div><span class="vis">You configure / Microsoft operates</span></li>
+      <li><span class="n">3</span><div><h3><a href="microsoft/foundry.html">Microsoft Foundry</a></h3><p>Where do models, agents, tools, evaluation and operations fit together?</p></div><span class="vis">Foundry capability map</span></li>
+      <li><span class="n">4</span><div><h3><a href="microsoft/resources-projects.html">Resources and projects</a></h3><p>How is the Azure environment organised, and where does the work live?</p></div><span class="vis">Subscription → resource group → resource → project</span></li>
+      <li><span class="n">5</span><div><h3><a href="microsoft/roles-identities.html">Roles and identities</a></h3><p>Who manages, who builds, and how does an agent reach other services?</p></div><span class="vis">People, permissions, agent identity</span></li>
+      <li><span class="n">6</span><div><h3><a href="episodes/ep01.html">Hands-on setup</a></h3><p>How do these ideas map to the real Azure and Foundry screens?</p></div><span class="vis">Episode 1 walkthrough</span></li>
+    </ol>
+  </section>
+
+  <section aria-labelledby="h-areas">
+    <h2 id="h-areas">What's in the collection</h2>
+    <div class="areas">
+      <a class="guide" href="concepts/harness-engineering.html"><span class="label">Concepts</span><h3>Ideas that outlast any product</h3><p>Harness engineering, model versus agent, context, tools, execution, controls and feedback.</p></a>
+      <a class="guide" href="microsoft/copilot-harness.html"><span class="label">Microsoft</span><h3>How Microsoft implements them</h3><p>The Copilot harness, Foundry's capabilities, resources, projects, roles and identities.</p></a>
+      <a class="guide" href="episodes/ep01.html"><span class="label">Episodes</span><h3>Tutorials for each video</h3><p>Learning goals, prerequisites, walkthroughs, the diagrams used, references and troubleshooting.</p></a>
+      <a class="guide" href="code/index.html"><span class="label">Code</span><h3>Samples you can run</h3><p>Setup instructions and code for each episode, with the versions they were tested on.</p></a>
     </div>
   </section>
 
   <section aria-labelledby="h-method">
     <h2 id="h-method">How we keep it accurate</h2>
     <div class="cards">
-      <div class="card">
-        <h3>Every statement has a source</h3>
-        <p>Facts come from Microsoft's own docs and announcements, listed at the bottom of each page with the date we checked them.</p>
-      </div>
-      <div class="card">
-        <h3>What we saw is labelled</h3>
-        <p>Anything we observed in our own Azure subscription is marked <span class="obs">We saw this</span>, with the date, because portals change and your results may differ.</p>
-      </div>
-      <div class="card">
-        <h3>Previews get re-checked</h3>
-        <p>Preview features, prices and regions are checked again before each episode is published, and the page date moves with them.</p>
-      </div>
-      <div class="card">
-        <h3>Our diagrams are simplified</h3>
-        <p>Diagrams are our drawings, not Microsoft's. Where we simplify, the caption says so.</p>
-      </div>
+      <div class="card"><h3>Every fact has a source</h3><p>Each page lists Microsoft's docs and other primary sources, with the date we checked them.</p></div>
+      <div class="card"><h3>Our diagrams are simplified</h3><p>The diagrams are our drawings. Where we simplify or group things our way, the caption says so.</p></div>
     </div>
   </section>
-  </main>
 
+  
+  </main>
   <footer>
     <span class="wordmark">Techshipped Studio</span>
     <span>Explore. Understand. Build.</span>
