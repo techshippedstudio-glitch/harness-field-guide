@@ -9,6 +9,7 @@ Usage:  python3 tools/build_site.py      (then python3 tools/build_diagrams.py -
 """
 from __future__ import annotations
 
+import hashlib
 import html
 import pathlib
 import re
@@ -17,6 +18,8 @@ ROOT = pathlib.Path(__file__).resolve().parents[1]
 SRC = ROOT / "src" / "pages"
 DOCS = ROOT / "docs"
 EDITION = "0.3"
+# Changes whenever site.css changes, so browsers fetch the new stylesheet instead of a cached one.
+CSS_VERSION = hashlib.sha256((DOCS / "assets" / "site.css").read_bytes()).hexdigest()[:10]
 
 # path, nav title, page title, description, area
 PAGES = [
@@ -112,7 +115,7 @@ def page(path: str, nav_title: str, title: str, desc: str, area: str, body: str)
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="{FONTS}">
-<link rel="stylesheet" href="{root}assets/site.css">
+<link rel="stylesheet" href="{root}assets/site.css?v={CSS_VERSION}">
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
