@@ -73,9 +73,9 @@
       <li><b>Fill in Basics.</b> Pick your subscription and a resource group (ours: <code>rg-techshipped-foundry</code>). Give the resource a globally unique name (ours: <code>techshipped-foundry-01</code>). Choose the region; check it, because the form fills one in for you. Name the default project (ours: <code>techshipped-agents</code>).</li>
       <li><b>Look through the other tabs.</b> Storage, Inbound and Outbound networking, Identity, Encryption and Tags. We kept the defaults; the Identity tab says the portal will give your user the Foundry User role.</li>
       <li><b>Create it.</b> Choose <i>Review + create</i>, then <i>Create</i>. Under <i>Deployment details</i> you'll see two items: the resource and its project.</li>
-      <li><b>Check the resource.</b> Open it and look at <i>Keys and Endpoint</i> (keep keys private), <i>Projects</i> (your default project is listed) and <i>Access control (IAM)</i>.</li>
-      <li><b>Open the Foundry portal.</b> Go to <code>ai.azure.com</code>, turn on <i>New Foundry</i> and choose your project. Look at Home, Discover (the model catalog), Build and Manage.</li>
-      <li><b>Confirm you can build.</b> Open <i>Build › Agents</i>. You should see "Create your first agent". If you see a permission message instead, see troubleshooting below.</li>
+      <li><b>Check the resource.</b> Open it and look at <i>Keys and Endpoint</i> (the resource endpoint; keep keys private), <i>Projects</i> (your default project is listed) and <i>Access control (IAM)</i>.</li>
+      <li><b>Open the Foundry portal.</b> Go to <code>ai.azure.com</code>, turn on <i>New Foundry</i> and choose your project. Home shows the <b>project endpoint</b>, ending in <code>/api/projects/&lt;project&gt;</code>; that's the one agent code uses. Look at Discover (the model catalog), Build and Manage.</li>
+      <li><b>Confirm you can build.</b> Open <i>Build › Agents</i>. You should see "Create your first agent". If you see a permission message instead, see troubleshooting below. To run an agent you'll also need a deployed model that supports reasoning and tool calling; Episode 2 starts there.</li>
     </ol>
   </section>
 

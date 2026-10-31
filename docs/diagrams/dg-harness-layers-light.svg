@@ -65,7 +65,7 @@
 <g data-stage="1">
 <circle cx="300" cy="318" r="68" class="s-core"/>
 <text x="300" y="320" text-anchor="middle" class="t-core">Model</text>
-<text x="300" y="339" text-anchor="middle" class="t-core-sub">predicts text</text>
+<text x="300" y="339" text-anchor="middle" class="t-core-sub">responds to input</text>
 </g>
 <g data-stage="2">
 <circle cx="300" cy="318" r="100.0" class="s-ring" stroke-width="44"/>
@@ -102,11 +102,11 @@
 <g data-stage="3"><rect x="600" y="118" width="16" height="16" rx="2" class="s-seg"/><text x="628" y="132" class="t-title">Instructions</text><text x="628" y="154" class="t-sub">Role, goal and rules the agent follows</text></g>
 <g data-stage="4"><rect x="600" y="192" width="16" height="16" rx="2" class="s-seg"/><text x="628" y="206" class="t-title">Context</text><text x="628" y="228" class="t-sub">What the model sees: task, knowledge, memory</text></g>
 <g data-stage="5"><rect x="600" y="266" width="16" height="16" rx="2" class="s-seg"/><text x="628" y="280" class="t-title">Tools</text><text x="628" y="302" class="t-sub">Ways to act: search, APIs, MCP servers</text></g>
-<g data-stage="6"><rect x="600" y="340" width="16" height="16" rx="2" class="s-seg"/><text x="628" y="354" class="t-title">Execution</text><text x="628" y="376" class="t-sub">A safe place to run code and work with files</text></g>
+<g data-stage="6"><rect x="600" y="340" width="16" height="16" rx="2" class="s-seg"/><text x="628" y="354" class="t-title">Execution</text><text x="628" y="376" class="t-sub">An isolated place to run code and work with files</text></g>
 <g data-stage="7"><rect x="600" y="414" width="16" height="16" rx="2" class="s-seg"/><text x="628" y="428" class="t-title">Controls</text><text x="628" y="450" class="t-sub">Permissions, approvals, limits and guardrails</text></g>
 <g data-stage="8"><rect x="600" y="488" width="16" height="16" rx="2" class="s-seg"/><text x="628" y="502" class="t-title">Feedback</text><text x="628" y="524" class="t-sub">Evaluations, tests and traces that show what worked</text></g>
           <path d="M40 594 H960" class="s-rule"/>
-          <g data-stage="1"><text x="40" y="622" class="t-step">1 · MODEL</text><text x="40" y="644" class="t-sub">Answers from what it learned</text></g>
-          <g data-stage="2"><text x="340" y="622" class="t-step">2 · AGENT</text><text x="340" y="644" class="t-sub">The model in a loop, taking actions</text></g>
+          <g data-stage="1"><text x="40" y="622" class="t-step">1 · MODEL</text><text x="40" y="644" class="t-sub">Turns its input into a response</text></g>
+          <g data-stage="2"><text x="340" y="622" class="t-step">2 · AGENT</text><text x="340" y="644" class="t-sub">Picks actions toward a goal, until done</text></g>
           <g data-stage="3"><text x="640" y="622" class="t-step">3 · ENGINEERED SYSTEM</text><text x="640" y="644" class="t-sub">The layers that make it reliable</text></g>
         </svg>

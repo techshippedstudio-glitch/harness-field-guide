@@ -96,8 +96,9 @@
 <text x="290" y="234" class="t-sub">configuration</text>
 <rect x="428" y="160" width="144" height="120" rx="6" class="s-box-in"/>
 <text x="440" y="190" class="t-title-sm">Copilot harness</text>
-<text x="440" y="216" class="t-sub">Microsoft runs</text>
-<text x="440" y="234" class="t-sub">the loop · PREVIEW</text>
+<text x="440" y="216" class="t-sub">Optional runtime</text>
+<text x="440" y="234" class="t-sub">for prompt agents</text>
+<text x="440" y="264" class="t-amber">PREVIEW</text>
 <rect x="578" y="160" width="144" height="120" rx="6" class="s-box"/>
 <text x="590" y="190" class="t-title-sm">Hosted agents</text>
 <text x="590" y="216" class="t-sub">Your own code</text>

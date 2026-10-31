@@ -103,7 +103,7 @@
 <text x="204.5" y="158.6" text-anchor="middle" class="t-seg">Feedback</text>
 </g>
           <text x="600" y="88" class="t-label">WHO LOOKS AFTER IT</text>
-<g data-stage="1"><circle cx="608" cy="122" r="8" class="s-seg-you"/><text x="628" y="128" class="t-title">Model</text><text x="964" y="128" text-anchor="end" class="t-own">YOU CHOOSE</text><text x="628" y="148" class="t-sub">A supported Foundry model</text></g>
+<g data-stage="1"><circle cx="608" cy="122" r="8" class="s-seg-you"/><text x="628" y="128" class="t-title">Model</text><text x="964" y="128" text-anchor="end" class="t-own">YOU CHOOSE</text><text x="628" y="148" class="t-sub">Deployed; supports reasoning and tool calls</text></g>
 <g data-stage="2"><rect x="600" y="172" width="16" height="16" rx="2" class="s-seg-ms"/><text x="628" y="186" class="t-title">Agent loop</text><text x="964" y="186" text-anchor="end" class="t-own">MICROSOFT</text><text x="628" y="206" class="t-sub">Plans, calls tools, reads results</text></g>
 <g data-stage="3"><rect x="600" y="230" width="16" height="16" rx="2" class="s-seg-you"/><text x="628" y="244" class="t-title">Instructions</text><text x="964" y="244" text-anchor="end" class="t-own">YOU</text><text x="628" y="264" class="t-sub">What the agent is for and its rules</text></g>
 <g data-stage="4"><rect x="600" y="288" width="16" height="16" rx="2" class="s-seg-shared"/><rect x="600" y="288" width="16" height="16" rx="2" fill="url(#hatch)"/><text x="628" y="302" class="t-title">Context</text><text x="964" y="302" text-anchor="end" class="t-own">SHARED</text><text x="628" y="322" class="t-sub">You add skills; it manages working context</text></g>

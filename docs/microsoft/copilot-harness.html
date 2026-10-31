@@ -83,7 +83,7 @@
 <text x="204.5" y="158.6" text-anchor="middle" class="t-seg">Feedback</text>
 </g>
           <text x="600" y="88" class="t-label">WHO LOOKS AFTER IT</text>
-<g data-stage="1"><circle cx="608" cy="122" r="8" class="s-seg-you"/><text x="628" y="128" class="t-title">Model</text><text x="964" y="128" text-anchor="end" class="t-own">YOU CHOOSE</text><text x="628" y="148" class="t-sub">A supported Foundry model</text></g>
+<g data-stage="1"><circle cx="608" cy="122" r="8" class="s-seg-you"/><text x="628" y="128" class="t-title">Model</text><text x="964" y="128" text-anchor="end" class="t-own">YOU CHOOSE</text><text x="628" y="148" class="t-sub">Deployed; supports reasoning and tool calls</text></g>
 <g data-stage="2"><rect x="600" y="172" width="16" height="16" rx="2" class="s-seg-ms"/><text x="628" y="186" class="t-title">Agent loop</text><text x="964" y="186" text-anchor="end" class="t-own">MICROSOFT</text><text x="628" y="206" class="t-sub">Plans, calls tools, reads results</text></g>
 <g data-stage="3"><rect x="600" y="230" width="16" height="16" rx="2" class="s-seg-you"/><text x="628" y="244" class="t-title">Instructions</text><text x="964" y="244" text-anchor="end" class="t-own">YOU</text><text x="628" y="264" class="t-sub">What the agent is for and its rules</text></g>
 <g data-stage="4"><rect x="600" y="288" width="16" height="16" rx="2" class="s-seg-shared"/><rect x="600" y="288" width="16" height="16" rx="2" fill="url(#hatch)"/><text x="628" y="302" class="t-title">Context</text><text x="964" y="302" text-anchor="end" class="t-own">SHARED</text><text x="628" y="322" class="t-sub">You add skills; it manages working context</text></g>
@@ -99,7 +99,7 @@
 
   <section id="anatomy" aria-labelledby="h-anatomy">
     <h2 id="h-anatomy">The parts in more detail</h2>
-    <p class="col">The harness is chosen when you create a prompt agent. From then on Foundry runs the loop: it plans each step, calls tools, runs code in a sandbox and hands bounded work to subagents.</p>
+    <p class="col">The harness is an optional runtime for a prompt agent: the agent stays a prompt agent, and you choose the harness when you create it. From then on Foundry runs the loop: it plans each step, calls tools, runs code in a sandbox and hands bounded work to subagents.</p>
     <figure>
       <div class="panel">
         <svg id="dg-harness-anatomy" viewBox="0 0 1000 556" role="img" aria-labelledby="fig1-t fig1-d">
@@ -220,7 +220,7 @@
 
   <section id="preview" aria-labelledby="h-preview">
     <h2 id="h-preview">Preview notes</h2>
-    <p class="note"><b>It's a preview.</b> You choose the harness when you create an agent and can't switch it later yet. It's offered in a limited set of Azure regions, and billing for the harness runtime starts on 1 Dec 2026; model use is billed separately. Check Microsoft's regions and pricing pages before you build.</p>
+    <p class="note"><b>It's a preview.</b> You choose the harness when you create an agent and can't switch it later yet. To run, the agent needs a deployed model that supports reasoning and tool calling. Foundry Memory isn't available to harness agents yet; conversation history and files in the agent's workspace are. It's offered in a limited set of Azure regions, and billing for the harness runtime starts on 1 Dec 2026, with model use billed separately. Check Microsoft's pages before you build.</p>
   </section>
 
   <section id="sources" aria-labelledby="h-sources">
