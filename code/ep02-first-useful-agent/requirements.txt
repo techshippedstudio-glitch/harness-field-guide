@@ -1,3 +1,5 @@
-azure-ai-projects>=2.10.0
-azure-identity>=1.19.0
-python-dotenv>=1.0.1
+# Tested versions (Python 3.11-3.13, 2026-11-01). The SDK is in preview: keep these pins.
+# For the exact tested set of every package, use requirements-lock.txt instead.
+azure-ai-projects==2.10.0
+azure-identity==1.27.0
+python-dotenv==1.2.4

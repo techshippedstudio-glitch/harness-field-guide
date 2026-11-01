@@ -15,6 +15,7 @@ from azure.identity import DefaultAzureCredential
 from dotenv import load_dotenv
 
 HERE = Path(__file__).parent
+REPORT = "report.md"
 DOWNLOAD_ID = re.compile(r"Download ID:\**\s*`?([A-Za-z][A-Za-z0-9_-]+)`?", re.IGNORECASE)
 
 
@@ -32,6 +33,28 @@ def generated_file_ids(response) -> list[str]:
                     ids.append(note.file_id)
             ids += [m for m in DOWNLOAD_ID.findall(content.text) if m not in ids]
     return ids
+
+
+def download_files(files, file_ids: list[str], out_dir: Path) -> list[Path]:
+    """Download each Foundry File into out_dir. Raises if nothing usable comes back."""
+    if not file_ids:
+        raise RuntimeError(
+            "The agent didn't return a downloadable file. Check that the agent's identity has the "
+            "Foundry User role on the project (README: 'Give the agent access'), wait a few minutes, then run again."
+        )
+    out_dir.mkdir(exist_ok=True)
+    saved = []
+    for file_id in file_ids:
+        name = Path(files.files.retrieve(file_id).filename).name
+        data = files.files.content(file_id).read()
+        if not data:
+            raise RuntimeError(f"Foundry File {file_id} ({name}) is empty.")
+        target = out_dir / name
+        target.write_bytes(data)
+        saved.append(target)
+    if not any(p.name == REPORT for p in saved):
+        raise RuntimeError(f"The agent returned {[p.name for p in saved]}, but not {REPORT}.")
+    return saved
 
 
 def main() -> int:
@@ -61,12 +84,13 @@ def main() -> int:
         print(f"\nAgent: {response.output_text}\n")
 
         files = project.get_openai_client()  # project-level client: Foundry Files
-        for file_id in generated_file_ids(response):
-            name = Path(files.files.retrieve(file_id).filename).name
-            (HERE / "output").mkdir(exist_ok=True)
-            target = HERE / "output" / name
-            target.write_bytes(files.files.content(file_id).read())
-            print(f"Downloaded: {target.relative_to(HERE)}")
+        try:
+            saved = download_files(files, generated_file_ids(response), HERE / "output")
+        except RuntimeError as error:
+            print(f"Error: {error}", file=sys.stderr)
+            return 2
+        for path in saved:
+            print(f"Downloaded: {path.relative_to(HERE)}")
     return 0
 
 
