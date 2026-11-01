@@ -17,7 +17,7 @@ import re
 ROOT = pathlib.Path(__file__).resolve().parents[1]
 SRC = ROOT / "src" / "pages"
 DOCS = ROOT / "docs"
-EDITION = "0.3"
+EDITION = "0.4"
 # Changes whenever site.css changes, so browsers fetch the new stylesheet instead of a cached one.
 CSS_VERSION = hashlib.sha256((DOCS / "assets" / "site.css").read_bytes()).hexdigest()[:10]
 
@@ -44,6 +44,9 @@ PAGES = [
     ("episodes/ep01.html", "Episode 1", "Episode 1: Harness Engineering on Microsoft Foundry: Start Here",
      "Episode 1 tutorial: from harness engineering to a Microsoft Foundry resource and default project, "
      "created and checked in the Azure portal.", "episodes"),
+    ("episodes/ep02.html", "Episode 2", "Episode 2: Microsoft Foundry Copilot Harness: Build Your First Useful Agent",
+     "Episode 2 tutorial: a fact-checking prompt agent on the Microsoft Copilot harness, built in the Foundry portal "
+     "with instructions, a skill and tools, then repeated in Python.", "episodes"),
     ("code/index.html", "Code and examples", "Code and Examples",
      "Runnable samples and setup instructions for each episode, with the versions they were tested on.",
      "code"),
@@ -64,6 +67,7 @@ PATH = [
     "microsoft/resources-projects.html",
     "microsoft/roles-identities.html",
     "episodes/ep01.html",
+    "episodes/ep02.html",
 ]
 
 FONTS = ("https://fonts.googleapis.com/css2?family=Archivo:wght@500..900&family=IBM+Plex+Mono:wght@400;500"

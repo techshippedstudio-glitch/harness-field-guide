@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="light dark">
+<title>Episode 2: Microsoft Foundry Copilot Harness: Build Your First Useful Agent · Harness Field Guide</title>
+<meta name="description" content="Episode 2 tutorial: a fact-checking prompt agent on the Microsoft Copilot harness, built in the Foundry portal with instructions, a skill and tools, then repeated in Python.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500..900&family=IBM+Plex+Mono:wght@400;500&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap">
+<link rel="stylesheet" href="../assets/site.css?v=f8fe69bc6f">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<div class="wrap">
+  <header class="mast">
+    <a class="lockup" href="../">
+      <span class="wordmark">Techshipped<br>Studio</span>
+      <span class="sitename">Harness Field Guide</span>
+      <span class="stamp">ED. 0.4</span>
+    </a>
+    <nav aria-label="Site"><a href="../concepts/harness-engineering.html">Concepts</a><a href="../microsoft/copilot-harness.html">Microsoft</a><a href="../episodes/ep01.html" aria-current="page">Episodes</a><a href="../code/index.html">Code</a></nav>
+  </header>
+  <nav class="subnav" aria-label="In this area"><a href="../episodes/ep01.html">Episode 1</a><a href="../episodes/ep02.html" aria-current="page">Episode 2</a></nav>
+  <main id="main">
+  <div class="hero col">
+    <div class="eyebrow">Episode 2 · Microsoft Foundry: Build Real AI Agents</div>
+    <h1>Microsoft Foundry Copilot Harness: Build Your First Useful Agent</h1>
+    <p class="lede">A small agent that does a real job: it checks claims against the Microsoft Learn pages they cite and returns an evidence-backed report. We build it in the Foundry portal, follow its agent loop in Traces, check its result ourselves, then build the same agent in Python.</p>
+    <div class="meta"><span><a href="https://youtu.be/E0a7DFoSkcs">Watch the video</a></span><span>Checked 1 Nov 2026</span><span>Copilot harness: preview</span></div>
+  </div>
+
+  <section aria-labelledby="h-learn">
+    <h2 id="h-learn">What you'll learn</h2>
+    <div class="twocol">
+      <div>
+        <div class="label">Concepts</div>
+        <ul>
+          <li>What the Copilot harness runs for you, and the four things you still choose</li>
+          <li>Instructions are the job, a skill is the method, tools are the actions</li>
+          <li>Why the agent's own identity needs a role before it can return a file</li>
+          <li>How to read the agent loop in Traces</li>
+        </ul>
+      </div>
+      <div>
+        <div class="label">Hands-on</div>
+        <ul>
+          <li>Create a prompt agent with the Copilot harness in the Foundry portal</li>
+          <li>Write its instructions, create a skill, switch off the tools it doesn't need</li>
+          <li>Assign Foundry User to the agent identity in the Azure portal</li>
+          <li>Run it, check a quote against its source, and repeat the build in Python</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section aria-labelledby="h-before">
+    <h2 id="h-before">Before you start</h2>
+    <ul class="col" style="margin:0;padding-left:1.2em;display:grid;gap:6px">
+      <li><b>A Foundry project in a Copilot harness region.</b> The preview runs in a limited set of regions; check <a href="https://learn.microsoft.com/en-us/azure/foundry/agents/concepts/limits-quotas-regions">Microsoft's current list</a>. Episode 1 created ours in Canada Central.</li>
+      <li><b>A deployed model that supports reasoning and tool calling,</b> with enough quota. We use <code>gpt-5.4-mini</code>. Bring-your-own-model isn't supported by the harness.</li>
+      <li><b>The Foundry User role on the project</b> for your own account (Episode 1 shows how to check it).</li>
+      <li><b>For the Python part:</b> Python 3.11 or later and the Azure CLI. The sample was tested with <code>azure-ai-projects</code> 2.10.0.</li>
+    </ul>
+    <div class="col note"><b>What we ran into with quota.</b> On 1 Nov 2026 our subscription had no usable quota for a harness-capable model in Canada Central, so the project we created in Episode 1 couldn't run this agent. We created a second Foundry resource and default project in Central US (also a harness region) and deployed <code>gpt-5.4-mini</code> there as Data Zone Standard at 100K tokens per minute. In a dry run, a 50K tokens-per-minute deployment of another model returned "Model deployment rate limit exceeded" for every harness request; a one-line question used about 11,000 tokens, because the harness sends its own context. Microsoft's harness quickstart uses 100K. Your quota depends on your subscription, so check <i>Manage › Quota</i> before you pick a region.</div>
+    <p class="col muted" style="font-size:16px">Read first, or watch the first chapter: <a href="../microsoft/copilot-harness.html">the Copilot harness</a>, <a href="../concepts/harness-engineering.html#skills">skills</a>, <a href="../microsoft/roles-identities.html#identities">agent identities</a>.</p>
+  </section>
+
+  <section aria-labelledby="h-steps">
+    <h2 id="h-steps">Walkthrough: build it in the Foundry portal</h2>
+    <ol class="steps">
+      <li><b>Create the agent with the harness.</b> In the Foundry portal (<i>New Foundry</i> on), open your project, then <i>Build › Agents › New agent › Build an agent</i>. Name it (ours: <code>fact-checker</code>), keep interaction mode <i>Text</i>, and tick <b>Use the Microsoft Copilot harness</b>. Tick it now: during the preview you choose the harness when you create the agent, and you can't add it to an existing agent later. Choose <i>Create agent and open playground</i>.</li>
+      <li><b>Pick the model.</b> In the playground, select your model deployment.</li>
+      <li><b>Write the instructions: the job.</b> Ours are in <a href="https://github.com/techshippedstudio-glitch/harness-field-guide/blob/main/code/ep02-first-useful-agent/instructions.md"><code>instructions.md</code></a>: you're a fact-checking assistant; follow the fact-check skill for the method and the report format; base every verdict only on the cited page; write <code>report.md</code> and return it as a downloadable file; then reply with one line per claim. They don't contain the steps; those go in the skill.</li>
+      <li><b>Create the skill: the method.</b> Under <i>Tools</i>, choose <i>Add › Add skills</i> and create a new one. Name <code>fact-check</code>; description "Check each claim against its cited source and write an evidence-backed report."; paste the instruction body from <a href="https://github.com/techshippedstudio-glitch/harness-field-guide/blob/main/code/ep02-first-useful-agent/skills/fact-check/SKILL.md"><code>SKILL.md</code></a> (everything after the front matter). Skills are versioned Foundry resources, and each agent version keeps the exact skill version it was saved with.</li>
+      <li><b>Choose the tools: the actions.</b> Open <i>Harness tools</i>. File system read, File system write, Web, Shell and Subagents are all on by default. Our agent needs Web and the two file tools, so we untick <b>Shell</b> and <b>Subagents</b>, then <i>Done</i>. Microsoft calls Shell the broadest harness tool; switch off what an agent doesn't need.</li>
+      <li><b>Save.</b> Choose <i>Save and start new chat</i>. The agent gets a new version with everything you set.</li>
+      <li><b>Find the agent identity.</b> On the agent's <i>Details</i> tab, <i>Identity and access</i> shows its Entra agent identity. Note its object ID; you need it in the next step.</li>
+      <li><b>Give that identity Foundry User on the project.</b> In the Azure portal, open the <i>project</i> (not the resource), then <i>Access control (IAM) › Add › Add role assignment</i>. Choose <b>Foundry User</b>; under <i>Members</i> choose <i>Select members</i> and search for the object ID; select it, then <i>Review + assign</i>. Assign it to the agent identity, not to the project's managed identity. Allow up to five minutes before you test. (Why: the agent writes <code>report.md</code> in the conversation's workspace, and the harness uploads it to Foundry Files using the agent's own identity, which starts without resource permissions.)</li>
+      <li><b>Run it.</b> Paste the four claims from <a href="https://github.com/techshippedstudio-glitch/harness-field-guide/blob/main/code/ep02-first-useful-agent/claims.md"><code>claims.md</code></a> into the chat and send. Claim 4 is wrong on purpose. Our run replied in about 13 seconds with four verdict lines (three Supported, one Contradicted) and a <code>report.md</code> chip.</li>
+      <li><b>Follow the agent loop.</b> The reply's footer lists what was used; open <i>Traces</i>. Our run recorded: a model call, the skill load, a model call, two <code>web_fetch</code> calls, a model call, <code>apply_patch</code> (writing the report in the workspace), a model call, the upload to Foundry Files, and a final model call. The <i>Graph view</i> shows the same run as a tree.</li>
+      <li><b>Check the result yourself.</b> Download the report and open it: each claim, its verdict, a quote of at most 15 words, and the source page with its last-updated date. Then open one cited page and search for the quoted sentence. Ours, "Foundry Memory stores and memory tools aren't available", is on the limits page word for word. Do this before you trust a verdict.</li>
+      <li><b>Look at the definition.</b> The playground's <i>YAML</i> tab shows what you built: a prompt agent, <code>harness: type: microsoft_copilot_preview</code>, the model, the instructions, the skill reference and the tools block with shell and subagents disabled.</li>
+    </ol>
+  </section>
+
+  <section aria-labelledby="h-code">
+    <h2 id="h-code">The same agent in Python</h2>
+    <p class="col">The sample in <a href="https://github.com/techshippedstudio-glitch/harness-field-guide/tree/main/code/ep02-first-useful-agent"><code>code/ep02-first-useful-agent</code></a> builds the same definition with the Azure AI Projects SDK: <code>create_agent.py</code> publishes the skill as a new version and adds a new version of the agent (a new version keeps the harness the agent was created with); <code>run_agent.py</code> opens a conversation (every harness request needs one), sends the claims, waits, and downloads <code>report.md</code>. It signs in with your Azure CLI login; there are no keys in the code.</p>
+    <pre class="col"><code>pip install -r requirements-lock.txt
+cp .env.example .env        # your project endpoint and model deployment name
+az login
+python smoke_test.py        # offline check
+python create_agent.py      # skill + agent versions
+./assign_agent_role.sh      # Windows: .\assign_agent_role.ps1 (only if the agent is new)
+python run_agent.py         # conversation, run, download</code></pre>
+    <p class="col">Our recorded run on 1 Nov 2026 completed in 18 seconds with the same four verdicts, and the portal then showed the code-created version as active, with its trace labelled with that version. The README has the full setup.</p>
+    <div class="col note"><b>The repository's skill is refined.</b> The video shows the first skill version, with three verdicts (Supported, Contradicted, Not found); that state is tagged <code>foundry-ep02-recorded</code>. The skill in <code>main</code> splits "Not found" into <b>Insufficient evidence</b> (the page doesn't address the claim) and <b>Source unavailable</b> (the page couldn't be fetched), allows "No evidence retrieved", and makes each source a link. <code>run_agent.py</code> also now stops with an error if no report comes back.</div>
+  </section>
+
+  <section aria-labelledby="h-diagrams">
+    <h2 id="h-diagrams">Diagrams in this episode</h2>
+    <ul class="col" style="margin:0;padding-left:1.2em;display:grid;gap:6px">
+      <li><a href="../concepts/harness-engineering.html#layers">What we build around a model</a> (the agent loop and the layers)</li>
+      <li><a href="../microsoft/copilot-harness.html#ownership">You configure, Microsoft operates</a></li>
+      <li><a href="../microsoft/roles-identities.html#identities">Agent identities</a></li>
+    </ul>
+  </section>
+
+  <section aria-labelledby="h-trouble">
+    <h2 id="h-trouble">Troubleshooting</h2>
+    <div class="cards">
+      <div class="card">
+        <h3>The agent replies, but no file comes back</h3>
+        <p>The upload to Foundry Files uses the agent identity. Check that the agent identity (not your account, not the project's managed identity) has Foundry User on the project, and wait up to five minutes after assigning it. In Python, <code>run_agent.py</code> stops with "The agent didn't return a downloadable file".</p>
+      </div>
+      <div class="card">
+        <h3>The report chip doesn't save a file</h3>
+        <p>In our portal run, clicking the <code>report.md</code> chip didn't leave a file in our downloads folder. The file was in the project under <i>Data › Datasets</i> (named after its Foundry file ID), where <i>Download</i> worked.</p>
+      </div>
+      <div class="card">
+        <h3>"Model deployment rate limit exceeded"</h3>
+        <p>Every harness request carries the harness's own context, about 11,000 tokens before your prompt in our test. A deployment with a low tokens-per-minute limit can reject every request. Raise the deployment's limit (we use 100K) or request more quota.</p>
+      </div>
+      <div class="card">
+        <h3>No harness option on an existing agent</h3>
+        <p>During the preview the harness is chosen when an agent is created and stays fixed. Create a new agent with the box ticked; new versions keep the harness.</p>
+      </div>
+      <div class="card">
+        <h3>The agent acts like a coding assistant</h3>
+        <p>Without instructions, a harness agent described itself to us as a coding helper. The instructions set the job; write them before you test.</p>
+      </div>
+      <div class="card">
+        <h3>Cleaning up</h3>
+        <p>Agents, skill versions and model deployments stay in the project until you delete them; check <i>Cost Management</i> in the Azure portal for what your project is costing. Read the <a href="../microsoft/resources-projects.html#cleanup">cleanup rules</a> before you delete a project or resource. We're keeping ours for the next episode.</p>
+      </div>
+    </div>
+  </section>
+
+  <section aria-labelledby="h-refs">
+    <h2 id="h-refs">References</h2>
+    <ol class="sources">
+      <li><a href="https://learn.microsoft.com/en-us/azure/foundry/agents/how-to/use-tools-skills-copilot-harness">Use the Microsoft Copilot harness with prompt agents</a> <span class="src">Microsoft Learn, updated 2026-10-29</span></li>
+      <li><a href="https://learn.microsoft.com/en-us/azure/foundry/agents/concepts/limits-quotas-regions">Foundry Agent Service limits, quotas, and regional support</a> <span class="src">Microsoft Learn, updated 2026-10-29</span></li>
+      <li><a href="https://learn.microsoft.com/en-us/azure/foundry/concepts/rbac-foundry">Role-based access control for Microsoft Foundry</a> <span class="src">Microsoft Learn</span></li>
+      <li><a href="https://learn.microsoft.com/en-us/azure/foundry/agents/concepts/agent-identity">Agent identity concepts</a> <span class="src">Microsoft Learn</span></li>
+    </ol>
+  </section>
+
+  
+  </main>
+  <footer>
+    <span class="wordmark">Techshipped Studio</span>
+    <span>Explore. Understand. Build.</span>
+    <span>Independent guide; not affiliated with Microsoft.</span>
+  </footer>
+</div>
+</body>
+</html>

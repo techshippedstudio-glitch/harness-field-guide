@@ -61,4 +61,6 @@ Open the agent in the Foundry portal (Build > Agents) to see the same agent, its
   couldn't be fetched), evidence can be `No evidence retrieved`, and each source is a link to the cited URL.
 - The harness is chosen when an agent is created. During the preview you can't add it to an existing agent.
 - Every request to a harness agent needs a conversation; `run_agent.py` creates one.
-- Troubleshooting (model quota, regions, rate limits): see the Episode 2 page on the site.
+- Troubleshooting (model quota, regions, rate limits): see the
+  [Episode 2 tutorial](https://techshippedstudio-glitch.github.io/harness-field-guide/episodes/ep02.html).
+- Video: [Microsoft Foundry Copilot Harness: Build Your First Useful Agent](https://youtu.be/E0a7DFoSkcs).

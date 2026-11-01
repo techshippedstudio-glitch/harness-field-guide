@@ -1,6 +1,6 @@
 # Episode 1: Harness Engineering on Microsoft Foundry: Start Here
 
-Playlist: Microsoft Foundry: Build Real AI Agents · Status: recorded, script in review · Video: not yet published
+Playlist: Microsoft Foundry: Build Real AI Agents · Status: published 1 Nov 2026 · Video: https://youtu.be/Jx21_pjmu08
 
 This is the index for everything that belongs to Episode 1.
 
@@ -11,9 +11,9 @@ This is the index for everything that belongs to Episode 1.
 | Diagrams (sources) | Inline SVG in [`src/pages/`](../../src/pages/); standalone SVGs in [`docs/diagrams/`](../../docs/diagrams/) | Published |
 | Diagram frames for the video | `exports/stages/` and `exports/video/` (1920x1080), made by `tools/build_diagrams.py --png` | Generated locally, not committed |
 | Runnable example | None: this episode is done entirely in the Azure portal and the Foundry portal | n/a |
-| Narration script | Added here once it's signed off | In review |
+| Narration script | Signed off 31 Oct 2026; kept with the production notes | Signed off |
 | Screen recording | Kept offline (raw footage contains account details); edited scenes are blurred before encoding | Recorded 31 Oct 2026 |
-| Published video, Short, posts | Linked here after publishing | Not yet |
+| Published video, Short | [Video](https://youtu.be/Jx21_pjmu08) · [Short](https://youtube.com/shorts/aprobm7io5k) | Published 1 Nov 2026 |
 
 ## Scene map
 

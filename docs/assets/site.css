@@ -261,3 +261,9 @@ footer .wordmark { color: var(--ink); font-size: 12px; }
 @media (prefers-reduced-motion: reduce) {
   a.guide { transition: none; }
 }
+
+/* Code (Episode 2 onwards) */
+code { font-family: var(--f-mono); font-size: .86em; }
+pre { background: var(--box); border: 1px solid var(--rule); border-radius: 6px; padding: 14px 16px; margin: 12px 0;
+      overflow-x: auto; font-size: 15px; line-height: 1.55; max-width: 100%; }
+pre code { font-size: inherit; }
