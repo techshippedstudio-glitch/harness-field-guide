@@ -65,7 +65,7 @@ def main() -> None:
     instructions = (HERE / "instructions.md").read_text(encoding="utf-8").strip()
 
     with (
-        DefaultAzureCredential() as credential,
+        DefaultAzureCredential(process_timeout=60) as credential,  # the Azure CLI can take a while to start
         AIProjectClient(endpoint=endpoint, credential=credential, allow_preview=True) as project,
     ):
         skill = project.beta.skills.create(

@@ -41,7 +41,7 @@ def main() -> int:
     claims = Path(sys.argv[1] if len(sys.argv) > 1 else HERE / "claims.md").read_text(encoding="utf-8")
 
     with (
-        DefaultAzureCredential() as credential,
+        DefaultAzureCredential(process_timeout=60) as credential,  # the Azure CLI can take a while to start
         AIProjectClient(endpoint=endpoint, credential=credential, allow_preview=True) as project,
     ):
         agent = project.get_openai_client(agent_name=agent_name)  # the agent's own endpoint
