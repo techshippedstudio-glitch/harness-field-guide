@@ -42,7 +42,7 @@ def build_definition(model: str, instructions: str, skill: SkillReference) -> Pr
         instructions=instructions,
         harness=MicrosoftCopilotHarness(),  # chosen when the agent is created
         skills=[skill],
-        reasoning=Reasoning(effort="low"),  # the portal's default for new agents
+        reasoning=Reasoning(effort="low"),  # what the portal saved for our agent
         tools=[
             # Harness tools are on by default; turn off what this agent doesn't need.
             MicrosoftCopilotToolsetPreview(
