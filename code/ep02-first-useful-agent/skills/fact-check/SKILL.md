@@ -22,5 +22,6 @@ Write `report.md` with:
 
 - A title: `Fact-check report`
 - The date checked (UTC)
-- A table with the columns: `#`, `Claim`, `Verdict`, `Evidence`, `Source` (page title and last-updated date)
+- A table with the columns: `#`, `Claim`, `Verdict`, `Evidence`, `Source` (page title, then "Last updated"
+  and the date, or "date not shown"; the same format in every row)
 - A `Notes` line for any page that couldn't be read, or `Notes: none`
