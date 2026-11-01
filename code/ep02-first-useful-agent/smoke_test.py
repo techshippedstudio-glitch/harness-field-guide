@@ -27,9 +27,10 @@ def main() -> None:
     assert definition["skills"] == [{"name": "fact-check", "version": "1"}]
     (toolset,) = definition["tools"]
     assert toolset["type"] == "microsoft_copilot_toolset_preview"
-    assert toolset["default_config"] == {"enabled": False}
-    enabled = {c["name"] for c in toolset["configs"] if c["enabled"]}
-    assert enabled == {"web", "filesystem_read", "filesystem_write"}, enabled
+    assert "default_config" not in toolset  # harness tools default to on
+    disabled = {c["name"] for c in toolset["configs"] if not c["enabled"]}
+    assert disabled == {"shell", "subagents"}, disabled
+    assert definition["reasoning"] == {"effort": "low"}
     print("smoke test passed")
 
 

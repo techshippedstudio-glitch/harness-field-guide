@@ -16,9 +16,9 @@ from azure.ai.projects import AIProjectClient
 from azure.ai.projects.models import (
     MicrosoftCopilotHarness,
     MicrosoftCopilotToolsetConfig,
-    MicrosoftCopilotToolsetDefaultConfig,
     MicrosoftCopilotToolsetPreview,
     PromptAgentDefinition,
+    Reasoning,
     SkillInlineContent,
     SkillReference,
 )
@@ -42,13 +42,13 @@ def build_definition(model: str, instructions: str, skill: SkillReference) -> Pr
         instructions=instructions,
         harness=MicrosoftCopilotHarness(),  # chosen when the agent is created
         skills=[skill],
+        reasoning=Reasoning(effort="low"),  # the portal's default for new agents
         tools=[
+            # Harness tools are on by default; turn off what this agent doesn't need.
             MicrosoftCopilotToolsetPreview(
-                default_config=MicrosoftCopilotToolsetDefaultConfig(enabled=False),
                 configs=[
-                    MicrosoftCopilotToolsetConfig(name="web", enabled=True),
-                    MicrosoftCopilotToolsetConfig(name="filesystem_read", enabled=True),
-                    MicrosoftCopilotToolsetConfig(name="filesystem_write", enabled=True),
+                    MicrosoftCopilotToolsetConfig(name="shell", enabled=False),
+                    MicrosoftCopilotToolsetConfig(name="subagents", enabled=False),
                 ],
             )
         ],

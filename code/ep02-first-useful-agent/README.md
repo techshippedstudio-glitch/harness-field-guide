@@ -7,7 +7,7 @@ an evidence-backed `report.md`. It's the same agent we build in the Foundry port
 |---|---|---|
 | Instructions | `instructions.md` | The job and the expected output |
 | Skill | `skills/fact-check/SKILL.md` | A repeatable method: fetch, find, decide, quote, report |
-| Tools | `create_agent.py` (`MicrosoftCopilotToolsetPreview`) | Web, file read, file write on; shell and subagents off |
+| Tools | `create_agent.py` (`MicrosoftCopilotToolsetPreview`) | Harness tools are on by default; shell and subagents turned off (web, file read, file write stay on) |
 | Harness | `create_agent.py` (`MicrosoftCopilotHarness()`) | Foundry runs the agent loop and the sandbox |
 | Input | `claims.md` | Four claims with their Microsoft Learn sources |
 
